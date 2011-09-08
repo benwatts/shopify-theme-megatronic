@@ -1,0 +1,24 @@
+<div class="articles-aside">
+
+	<!-- Widget: Archives -->
+	<div class="widget widget-linklist" id="widget-allcollections">
+		<div class="widget-header">
+			<h3>Recent Posts</h3>
+		</div>
+		<div class="widget-content">
+			<ul>
+			{% for article in blog.articles | limit: 10 %}
+				<li>
+					<h4><a href="{{ article.url }}" title="{{ article.title }}">{{ article.title }}<span class="arrow"></span></a></h4>
+					<!--<p class="date-posted">{{ article.created_at | date: "%B" }} {{ article.created_at | date: "%d" }}, {{ article.created_at | date: "%Y" }}</p>-->
+				</li>
+			{% endfor %}
+			</ul>
+		</div>		
+	</div><!-- /.widget -->
+	
+	<div class="widget widget-rss">
+		<a href="{{ blog.url}}.atom" class="rss-link">Subscribe via RSS</a>
+	</div> 
+	
+</div><!-- /.articles-aside -->

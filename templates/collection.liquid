@@ -1,0 +1,66 @@
+<div class="col-content">
+
+  <div class="productlist-wrapper condensed collection collection-{{ collection.handle }}">
+    
+    <div class="productlist-header section-header">
+      <h1>{{ collection.title }} {% if current_tags %} &raquo; {{current_tags}}{% endif %}</h1>
+    </div>
+
+    {% if collection.all_tags.size > 0 %}
+    <ul class="product-tags clearfix">
+      {% if current_tags %}
+        <li><a href="{{ collection.url }}">All</a></li>
+      {% else %}
+        <li class="active"><a href="{{ collection.url }}">All</a></li>
+      {% endif %}
+
+      {% for tag in collection.all_tags %}
+        {% if current_tags contains tag %}
+          <li class="active"><a href="{{ collection.url }}/{{ tag | handle }}">{{ tag }}</a></li>
+        {% else %}
+          <li><a href="{{ collection.url }}/{{ tag | handle }}">{{ tag }}</a></li>
+        {% endif %}
+      {% endfor %}            
+    </ul>
+    {% endif %}
+    
+    {{ collection.description }}
+
+    {% paginate collection.products by 25 %}
+      {% if collection.products.size > 0 %}
+    
+        <ul class="thumbgrid clearfix">
+          {% for product in collection.products %}
+            <li{% cycle '', '', '', '', ' class="last-in-row"' %}>
+              <div class="product-photo"><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.title | escape }}" /></a></div>
+              <div class="product-desc">
+                <h3 class="product-title"><a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 35 }}</a></h3>
+                <p class="product-price">
+                {% if product.price_varies %} 
+                  from {{ product.price_min | money }}
+                {% else %}
+                  {{ product.price_min | money }}
+                  {% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}                
+                {% endif %}
+                </p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% if paginate.pages > 1 %}
+          {% include 'pagination' %}
+        {% endif %}
+      
+      {% else %}    
+        <strong>No products found in this collection.</strong>
+      {% endif %}
+    {% endpaginate %}
+  
+  </div>
+</div>
+  
+<div class="col-browse">
+  {% include 'left-col-nav' %}
+  {% include 'left-col-ads' %}
+</div><!-- /#col-browse --> 

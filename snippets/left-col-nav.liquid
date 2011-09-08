@@ -1,0 +1,27 @@
+{% if settings.show_leftnav_allcollections == true %}
+<!-- Widget: list all collections -->
+<div class="widget widget-linklist" id="widget-allcollections">
+	<div class="widget-header">
+		<h3><a href="/collections">{{settings.allcollections_title}}</a></h3>
+	</div>
+	<div class="widget-content">
+		<ul>
+		{% for c in collections %}
+			<li><a href="{{ c.url }}" title="{{ c.title }}">{{ c.title }}<span class="arrow"></span></a></li>
+		{% endfor %}
+		</ul>
+	</div>		
+</div><!-- /.widget -->
+{% endif %}
+
+{% if settings.show_leftnav_linklist1 == true %}
+	{% include 'left-col-linklist' with settings.leftnav_linklist1 %}
+{% endif %}
+
+{% if settings.show_leftnav_linklist2 == true %}
+	{% include 'left-col-linklist' with settings.leftnav_linklist2 %}
+{% endif %}
+
+{% if settings.show_leftnav_linklist3 == true %}
+	{% include 'left-col-linklist' with settings.leftnav_linklist3 %}
+{% endif %}

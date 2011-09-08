@@ -1,0 +1,50 @@
+<div class="col-content">
+		
+	<div class="page-header clearfix">
+	  <h1 class="title">Search Results</h1>
+	</div>
+
+  {% if search.performed %}			
+	  {% paginate search.results by 10 %}  			
+	  {% include 'pagination' with 'top' %}
+
+	  {% if search.results == empty %}  
+	  <div class="empty">
+	    Your search for "{{search.terms | escape}}" did not yield any results
+	  </div>              	
+	{% else %}  
+	  <div class="search-results">
+	    {% for item in search.results %} 
+	    <div class="item clearfix">			
+				<div class="thumbnail">
+	      {% if item.featured_image %}
+	        <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag }}</a>
+				{% else %}
+					<a href="{{ item.url }}"><img src="{{ "generic-page-icon.jpg" | asset_url }}" alt="Generic page thumbnail" /></a>					
+	      {% endif %}
+	     	</div>			
+
+	      <div class="content">
+	        <h2>{{ item.title | link_to: item.url }}</h2>
+					{% if item.price %}
+						<p class="product-price">{{ item.price | money }}{% if item.compare_at_price_max > product.price %} <del>{{ item.compare_at_price_max | money }}</del>{% endif %}</p>
+	        {% endif %}
+					{{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
+	      </div>
+
+	    </div> <!-- end .item -->
+	    {% endfor %}
+	  </div> <!-- end .results -->
+  {% endif %}
+
+  {% include 'pagination' %}
+  {% endpaginate %}
+ {% endif %}
+
+</div><!-- /#col-content -->
+
+
+<div class="col-browse">
+	{% include 'left-col-nav' %}
+	{% include 'left-col-ads' %}
+</div><!-- /#col-browse -->

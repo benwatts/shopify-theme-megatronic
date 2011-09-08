@@ -1,0 +1,55 @@
+<div class="col-content">
+		
+	<div class="page-header clearfix">
+	  <h1 class="title"><a href="{{blog.url}}">{{blog.title}}</a></h1>
+	</div>
+	
+	{% include 'blog-sidebar' %}
+
+  {% paginate blog.articles by 5 %}
+  <div class="articles">
+	
+    {% for article in blog.articles %}
+    <div class="article clearfix">
+			
+			<div class="article-header clearfix">
+				<p class="date-posted">{{ article.created_at | date: "%B" }} {{ article.created_at | date: "%d" }}, {{ article.created_at | date: "%Y" }}</p>
+       	<h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+			</div>
+			
+			<div class="article-content content">
+      {{ article.excerpt_or_content }}
+			</div>
+
+			<div class="article-footer clearfix">
+				<p class="author">Written by {{ article.author }}</p>
+				<p class="add-comments">
+					{% if article.comments_enabled? %}
+						{% if article.comments_count > 0 %}
+							<a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="icon">{{ article.comments_count }} comments</span></a>
+						{% elsif article.comments_count == 1 %}
+							<a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="icon">{{ article.comments_count }} comment</span></a>
+						{% else %}
+							<a class="btn" href="{{article.url}}#comments" title="Add your thoughts"><span class="icon">Add a comment</span></a>
+						{% endif %}
+					{% else %}
+						Comments disabled
+					{% endif %}
+				</p>
+			</div>
+				
+    </div> <!-- end .article -->
+    {% endfor %}
+
+	  {% include 'pagination' %}
+
+  </div> <!-- end .articles -->
+  {% endpaginate %}
+	
+</div><!-- /.col-content -->
+
+
+<div class="col-browse">
+	{% include 'left-col-nav' %}
+	{% include 'left-col-ads' %}
+</div><!-- /.col-browse -->

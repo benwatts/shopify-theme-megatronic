@@ -1,0 +1,60 @@
+{% unless settings.shipping_calculator == 'Disabled' %}
+
+<div id="shipping-calculator" class="widget">
+  
+	<div class="widget-header">
+  	<h3>{{ settings.shipping_calculator_heading }}</h3>
+	</div>
+
+	<div class="widget-content">
+		<ul class="calculator-form">
+		  <li class="clearfix">
+		    <label for="address_country">Country</label>
+		    <select id="address_country" name="address[country]" data-default="{% if shop.customer_accounts_enabled and customer %}{{ customer.default_address.country }}{% elsif settings.shipping_calculator_default_country != '' %}{{ settings.shipping_calculator_default_country }}{% endif %}">{{ country_option_tags }}</select>
+		  </li>
+		  <li id="address_province_container" style="display:none;" class="clearfix">
+		    <label for="address_province" id="address_province_label">Province</label>
+		    <select id="address_province" class="address_form" name="address[province]" data-default="{% if shop.customer_accounts_enabled and customer and customer.default_address.province != '' %}{{ customer.default_address.province }}{% endif %}"></select>
+		  </li>   
+		  <li class="clearfix">
+		    <label for="address_zip">Zip Code</label>
+		    <input type="text" id="address_zip" name="address[zip]"{% if shop.customer_accounts_enabled and customer %} value="{{ customer.default_address.zip }}"{% endif %} />
+		  </li> 
+			<li>
+				<input type="button" class="get_rates btn" value="{{ settings.shipping_calculator_submit_button_label }}" />
+		  </li>
+		</ul>
+
+  	<div id="wrapper-response"></div>
+	</div>
+  
+</div>
+
+<script id="shipping-calculator-response-template" type="text/x-jquery-tmpl">
+  {% raw %}
+  <p id="shipping-rates-feedback" class="{{if success}}success{{else}}error{{/if}}">
+  {{if success}}
+    {{if rates.length > 1}}
+    There are ${rates.length} shipping rates available for ${address}, starting at ${Shopify.formatMoney(rates[0].price)}.
+    {{else}}
+      {{if rates.length == 1}}
+      There is one shipping rate available for ${address}.
+      {{else}}
+      We do not ship to this destination.
+      {{/if}}
+    {{/if}}
+  {{else}}
+    ${errorFeedback}
+  {{/if}}
+  </p>
+  <ul id="shipping-rates">
+    {{each( index, rate ) rates}}
+    <li>${rate.name} at ${Shopify.formatMoney(rate.price)}</li>
+    {{/each}}
+  </ul>
+  {% endraw %} 
+</script>
+{% endunless %}
+
+
+{% comment %} Moved all javascript to the footer of the layout. {% endcomment %}

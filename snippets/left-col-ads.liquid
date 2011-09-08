@@ -1,0 +1,33 @@
+{%if settings.show_leftcol_ad_1 == true %}
+<!-- Widget: left column ad #1 -->
+<div class="widget widget-ad" id="widget-leftad-1">
+	<div class="widget-content">
+		{% if settings.leftcol_ad_1_link != "" %}<a href="{{settings.carousel_item_3_link}}">{%endif%}						
+		{{ 'leftcol-ad-1.jpg' | asset_url | img_tag }}
+		{% if settings.leftcol_ad_1_link != "" %}</a>{%endif%}						
+	</div>
+</div><!-- /.widget -->
+{% endif %}
+
+{%if settings.show_leftcol_ad_2 == true %}	
+<!-- Widget: left column ad #2 -->
+<div class="widget widget-ad" id="widget-leftad-2">
+	<div class="widget-content">
+		{% if settings.leftcol_ad_2_link != "" %}<a href="{{settings.leftcol_ad_2_link}}">{%endif%}						
+		{{ 'leftcol-ad-2.jpg' | asset_url | img_tag }}
+		{% if settings.leftcol_ad_2_link != "" %}</a>{%endif%}						
+	</div>
+</div><!-- /.widget -->
+{% endif %}
+
+{%if settings.show_leftcol_ad_3 == true %}	
+<!-- Widget: left column ad #3 -->
+<div class="widget widget-ad" id="widget-leftad-3">
+	<div class="widget-content">
+		{% if settings.leftcol_ad_3_link != "" %}<a href="{{settings.leftcol_ad_3_link}}">{%endif%}						
+		{{ 'leftcol-ad-3.jpg' | asset_url | img_tag }}
+		{% if settings.leftcol_ad_3_link != "" %}</a>{%endif%}						
+	</div>
+</div><!-- /.widget -->		
+{% endif %}
+

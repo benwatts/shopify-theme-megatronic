@@ -1,0 +1,259 @@
+/** 
+ * Megatronic - Checkout CSS
+ * Refer to: http://wiki.shopify.com/Checkout_CSS
+ *
+ * Notes:
+ * This attempts to overwrite the existing styles used in the checkout process. 
+ * It may be a bit quirky due to the variation in markup between the main site and checkout process. 
+ *
+ */
+
+
+/* Undo background and gradient */
+body, #main, #container, #header, #footer {
+  background: #fff;
+	}
+	
+#container{
+	margin-top: 4px;
+	}
+	
+a{ 
+	color: {{ settings.link_colour }} 
+	}
+a:hover{ 
+	color: {{ settings.link_hover_colour }} 
+	}
+	
+	
+	
+/** 
+ * Header 
+ * Making it look as consistent with the rest of the site as possible . 
+ */
+
+#header,
+#container.slim #header{
+	background: {{ settings.header_colour }} url(header-gradient-white.png) 0 0 repeat-x;
+	border-bottom: solid 1px {{ settings.topmenu_colour }};
+	padding: 0;
+	-moz-border-radius: 0 0 8px 8px; -webkit-border-radius: 0 0 8px 8px; border-radius: 0 0 8px 8px;	
+	width: 776px;
+	margin: 0 0 30px 0;
+	}
+#header h1{ text-align: center; }	
+
+{% if settings.use_logo_image %}
+#logo { 
+	width: 100%;
+  height: 75px;
+  background: url(logo.png) 15px 50% no-repeat;
+	}
+#header .title{ display: none; }	
+{% else %}
+#header{position: relative;}
+#logo{
+	height: 75px;
+	}
+#header .title{
+	position: absolute;
+	top: 30px; left: 15px;
+	line-height: 1em;
+	color: #fff;
+	}	
+{% endif %}
+	
+#tagline{
+	background: {{ settings.topmenu_colour }};
+	padding: 7px 10px;	
+	margin: 0;
+	-moz-border-radius: 0 0 8px 8px; -webkit-border-radius: 0 0 8px 8px; border-radius: 0 0 8px 8px;		
+	}
+#tagline .subtitle{ color: {{settings.link_active_colour}}; }
+
+
+
+/**
+ * Structure
+ */
+
+#main,
+#content,
+#overview{
+	padding: 0;
+	}
+	
+	
+	
+/**
+ * Generic
+ */
+
+body{ 
+	font-family: helvetica, arial, sans-serif; 
+	color: #666;
+	}
+
+label{ font-weight: normal; }
+
+.group,
+#email{ 
+	border: none;
+	-moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px;				
+	}
+.group h3{
+	padding: 0 0 10px 0;
+	}
+	
+h3{ color: #000; }
+	
+.address-notification{
+	-moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px;	
+	border: none;
+	padding: 10px;			
+	border: solid 1px #fff;
+	}
+	
+	
+
+/**
+ * Wallet
+ * Weird stuff happening here. Resetting. 
+ */
+
+#wallet{
+	float: right;
+	margin-left: 0;
+	padding: 8px;
+	background: #f6f6f6;
+	-moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px;		
+	}
+	
+#wallet br{ display: none; }
+
+#wallet .hint{
+	display: block;
+	font-size: 11px;
+	}
+	
+#cost{ 
+	margin: 0; 
+	font-family: helvetica, arial, sans-serif;
+	font-size: 300%;
+	}
+	
+#steps{
+	display: block;
+	margin-top: 8px;
+	font-family: helvetica, arial, sans-serif;
+	font-size: 125%;
+	color: #999;
+	font-style: normal;
+	}	
+
+#products h2{ display: none;}
+
+#thumbs .plist-variant-title,
+#thumbs .plist-line-price{
+	color: #999;
+	}
+
+#thumbs img{
+	display: block;
+	padding: 1px;
+	border: solid 1px #eee;
+	}
+#thumbs div{ 
+	padding: 0 10px 0 0;
+	}
+#thumbs td{
+	padding: 0 15px 15px 0;
+	}
+
+
+
+/**
+ * Contact Email
+ */
+
+#email label{
+	color: #000;
+	padding: 0 0 10px 0;
+	margin: 5px 0 10px 0;
+	font-weight: normal;
+	border-bottom: 1px solid #DDDDDD;
+	}
+#email .field-with-errors{
+	margin: 0 0 10px 0;
+	}
+
+
+
+/**
+ * Butttons/Next Steps
+ */
+
+#buttons{
+	border: none;
+	-moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px;			
+	text-align: right;
+	}
+	
+
+
+/* Undo overview background and borders */
+
+#main #overview {
+  background: #fff;
+  border: none;
+	}
+#main #overview > * {
+  border: none;
+	}
+#main #thumbs div {
+  border: none;
+	}
+	
+.form td.lbl{ 
+	width: 100px; 
+	vertical-align: middle;
+	}
+.form td{ 
+	padding: 8px 0;
+	border-bottom: dotted 1px #e6e6e6; 
+	}	
+
+
+	
+/* Slim (after purchase completed) */
+#container.slim{
+	width: 776px;
+	}
+
+#container.slim #main{
+	padding: 0;
+	width: auto;
+	background: none;
+	}
+
+#container.slim #footer{
+	background: none;
+	}
+	
+.slim #overview h2{
+	color: #000;
+	padding: 0 0 10px 0;
+	margin: 5px 0 10px 0;
+	font-weight: normal;
+	font-size: 130%;
+	border-bottom: 1px solid #DDDDDD !important;
+	}	
+	
+.slim #thumbs img{
+	float: left;
+	margin: 0 10px 0 0;
+	}
+	
+.slim #thumbs h3{
+	margin: 20px 0 0 0;
+	}

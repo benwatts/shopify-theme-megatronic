@@ -1,0 +1,5 @@
+{% if paginate.pages > 1 %}
+<div class="pagination {{ pagination }} clearfix">
+  {{ paginate | default_pagination }}
+</div>
+{% endif %}

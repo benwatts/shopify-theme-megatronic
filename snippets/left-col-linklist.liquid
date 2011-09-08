@@ -1,0 +1,13 @@
+<!-- Widget: Custom linklist -->
+<div class="widget widget-linklist" id="widget-{{ linklists.[left-col-linklist].handle }}">
+	<div class="widget-header">
+		<h3>{{linklists.[left-col-linklist].title}}</h3>
+	</div>
+	<div class="widget-content">
+		<ul>
+		{% for link in linklists.[left-col-linklist].links %}
+			<li><a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}<span class="arrow"></span></a></li>
+		{% endfor %}
+		</ul>
+	</div>		
+</div><!-- /.widget -->

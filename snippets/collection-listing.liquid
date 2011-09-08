@@ -1,0 +1,37 @@
+<div class="col-content">
+
+	<div class="productlist-wrapper condensed collection collection-{{ collection.handle }}">
+		
+		<div class="productlist-header section-header">
+			<h1>Product Collections</h1>
+		</div>
+	
+		<ul class="thumbgrid clearfix">
+		  {% for collection in collections %}
+		  {% unless collection.handle == 'frontpage' %}
+				<li{% cycle '', '', '', '', ' class="last-in-row"' %}>
+					<div class="product-photo">
+						<a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+            	{{ collection.products.first.featured_image | product_img_url: 'compact' | img_tag: collection_title }}
+          	</a>
+          </div>
+					<div class="product-desc">            
+						<h3><a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
+              {{ collection.title | escape | truncate: 35 }}
+            </a></3>
+            <small class="numitems">
+              {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
+            </small>					
+					</div>
+				</li>
+		  {% endunless %}
+		  {% endfor %}
+		</ul>
+
+	</div>
+</div>
+
+<div class="col-browse">
+	{% include 'left-col-nav' %}
+	{% include 'left-col-ads' %}
+</div><!-- /#col-browse -->

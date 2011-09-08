@@ -1,0 +1,12 @@
+{%if settings.[footer-linklist] != '' && linklists.[footer-linklist].size > 0 %}	
+<div class="footer-linklist">				
+	<h3>{{ linklists.[footer-linklist].title }}</h3>
+	<ul>
+		{% for link in linklists.[footer-linklist].links %}
+      <li{% if forloop.first %} class="first"{% endif %}{% if forloop.last %} class="last"{% endif %}>
+				<a href="{{ link.url }}"{% if link.url == active_url %} class="current"{% endif %}><span class="arrow"></span>{{ link.title }}</a>
+			</li>
+    {% endfor %}	
+	</ul>
+</div>
+{% endif %}

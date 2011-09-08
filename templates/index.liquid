@@ -1,0 +1,130 @@
+<div class="col-content">
+		
+	{% if settings.show_carousel == true %}
+		<div id="carousel-wrapper">
+			<div id="carousel">	
+				<ol class="items">
+					
+					{% if settings.show_carousel_item_1 == true %}
+					<li>
+						{% if settings.carousel_item_1_link != "" %}<a href="{{settings.carousel_item_1_link}}">{%endif%}
+						{{ 'carousel-item-1.jpg' | asset_url | img_tag }}
+						{% if settings.carousel_item_1_link != "" %}</a>{%endif%}
+					</li>
+					{% endif %}
+					
+					{% if settings.show_carousel_item_2 == true %}
+					<li>
+						{% if settings.carousel_item_2_link != "" %}<a href="{{settings.carousel_item_2_link}}">{%endif%}						
+						{{ 'carousel-item-2.jpg' | asset_url | img_tag }}
+						{% if settings.carousel_item_2_link != "" %}</a>{%endif%}						
+					</li>
+					{% endif %}
+					
+					{% if settings.show_carousel_item_3 == true %}
+					<li>
+						{% if settings.carousel_item_3_link != "" %}<a href="{{settings.carousel_item_3_link}}">{%endif%}						
+						{{ 'carousel-item-3.jpg' | asset_url | img_tag }}
+						{% if settings.carousel_item_3_link != "" %}</a>{%endif%}						
+					</li>
+					{% endif %}
+					
+					{% if settings.show_carousel_item_4 == true %}
+					<li>
+						{% if settings.carousel_item_4_link != "" %}<a href="{{settings.carousel_item_4_link}}">{%endif%}						
+						{{ 'carousel-item-4.jpg' | asset_url | img_tag }}
+						{% if settings.carousel_item_4_link != "" %}</a>{%endif%}						
+					</li>
+					{% endif %}
+					
+					{% if settings.show_carousel_item_5 == true %}
+					<li>
+						{% if settings.carousel_item_5_link != "" %}<a href="{{settings.carousel_item_5_link}}">{%endif%}						
+						{{ 'carousel-item-5.jpg' | asset_url | img_tag }}
+						{% if settings.carousel_item_5_link != "" %}</a>{%endif%}						
+					</li>
+					{% endif %}
+				
+					{% if settings.show_carousel_item_6 == true %}
+					<li>
+						{% if settings.carousel_item_6_link != "" %}<a href="{{settings.carousel_item_6_link}}">{%endif%}						
+						{{ 'carousel-item-6.jpg' | asset_url | img_tag }}
+						{% if settings.carousel_item_6_link != "" %}</a>{%endif%}						
+					</li>
+					{% endif %}																	
+
+				</ol>						
+			</div>
+			
+			{% if settings.show_carousel_controls == true %}
+			<div id="carousel-controls" class="clearfix">
+				<ol id="carousel-slide-menu"></ol>
+				<p class="carousel-nextprev"><a class="prev browse left" title="Previous slide">Previous</a> / <a class="next browse right" title="Next slide">Next</a> </p>				
+			</div>
+			{% endif %}
+			
+		</div>
+	{% endif %}
+
+
+	
+	{% if settings.home_show_ads == true %}
+	<div class="home-ads clearfix">
+		
+		<!-- Ad on the left #1 -->
+		<div class="widget widget-ad" id="widget-home-ad-1">
+			<div class="widget-content">			
+				{{ 'home-left-ad.jpg' | asset_url | img_tag | link_to: settings.home_ad_left_link }}
+			</div>
+		</div><!-- /.widget -->
+	
+		<!-- Ad on the right #2 -->
+		<div class="widget widget-ad" id="widget-home-ad-2">
+			<div class="widget-content">
+				{{ 'home-right-ad.jpg' | asset_url | img_tag | link_to: settings.home_ad_right_link }}
+			</div>
+		</div><!-- /.widget -->
+		
+	</div>
+	{% endif %}
+	
+	
+	
+	<!-- Product list -->
+	<div class="productlist-wrapper condensed">
+		<div class="productlist-header section-header">
+			<h2>{{ collections.[settings.home_collection].title | link_to: collections.[settings.home_collection].url }}</h2>
+		</div>
+		
+		{% if collections.[settings.home_collection] | size > 0 %}
+		<ul class="thumbgrid clearfix">
+			{% for product in collections.[settings.home_collection].products %}
+				<li{% cycle '', '', '', '', ' class="last-in-row"' %}>
+					<div class="product-photo"><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.title | escape }}" /></a></div>
+					<div class="product-desc">
+						<h3 class="product-title"><a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 35 }}</a></h3>
+						<p class="product-price">
+						{% if product.price_varies %} 
+							from {{ product.price_min | money }}
+						{% else %}
+							{{ product.price_min | money }}
+							{% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}								
+						{% endif %}
+						</p>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+		{% else %}
+			<p id="empty">There are no products in this collection.</p>
+		{% endif %}
+	</div><!-- /.productlist-wrapper -->
+	
+</div><!-- /.col-content -->
+
+
+
+<div class="col-browse">
+	{% include 'left-col-nav' %}
+	{% include 'left-col-ads' %}
+</div><!-- /#col-browse -->
