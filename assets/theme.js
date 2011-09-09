@@ -51,16 +51,10 @@ if( $('#template-product').length > 0 ){
   
   $('.zoomable').facebox(); 
 
-  /*
   $(window).load( function(){
-    var options = { 
-      zoomType: 'innerzoom'
-      };
-    $('.zoomable').jqzoom(options);
     $('#product-thumbs a').click( function(){ return false; });
     $('#add-to-cart').click( addToCart ); 
   });
-  */
   
   function addToCart(e){
     $.ajax({ 
