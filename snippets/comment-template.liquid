@@ -1,0 +1,10 @@
+        <div class="comment clearfix">
+
+          <div class="comment-posted"><span class="year">{{ comment.created_at | date: "%Y" }}</span>/<span class="month">{{ comment.created_at | date: "%m" }}</span>/<span class="day">{{ comment.created_at | date: "%d" }}</span></div>
+      
+          <div class="comment-content">
+            <p class="comment-author">{{ comment.author }} said:</p>
+            {{ comment.content }}
+          </div>
+          
+        </div> <!-- end .comment -->

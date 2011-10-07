@@ -9,6 +9,9 @@
  */
 $( function(){
   initDropDown();
+
+  // Adjust the width of the main menu depending on how much space the customer controls on the right takes up
+  $('#nav').width( $('#top-menu').width() - $('#customer-controls').width() - 30 );
 });
 
 
@@ -16,7 +19,7 @@ $( function(){
  * Homepage 
  * - init carousel
  */
-if( $('#template-index').length > 0 ){
+if( $('.template-index:first').length > 0 ){
   
   $("#carousel").scrollable({
     circular: true
@@ -47,10 +50,8 @@ if( $('#template-index').length > 0 ){
  * - init zoomer
  * - ajaxy cart stuff
  */
-if( $('#template-product').length > 0 ){
+if( $('.template-product:first').length > 0 ){
   
-  $('.zoomable').facebox(); 
-
   $(window).load( function(){
     $('#product-thumbs a').click( function(){ return false; });
     $('#add-to-cart').click( addToCart ); 
@@ -110,7 +111,7 @@ if( $('#template-product').length > 0 ){
  * User Accounts > Login
  * - open Facebox to open the forgot a password form
  */
-if( $('#template-customers-login').length > 0 ){
+if( $('.template-customers-login:first').length > 0 ){
   
   $('#forgot-password-link').click( function(e){
     $.facebox({ div: '#recover-password' });
@@ -127,10 +128,11 @@ if( $('#template-customers-login').length > 0 ){
  * Cart
  * - expand add a note to order
  */
-if( $('#template-cart').length > 0 ){
+if( $('.template-cart:first').length > 0 ){
   $('#note').hide();
   $('#checkout-addnote label:first').toggle( function(){ $('#note').show(); }, function(){ $('#note').hide(); } );
 }
+
 
 
 /** 
@@ -168,7 +170,7 @@ function validEmail(value){
  * - open Facebox to edit an address, has to change some ids (facebooks duplicates an existing div on the page)
  */
 
-if( $('#template-customers-addresses').length > 0 ){  
+if( $('.template-customers-addresses:first').length > 0 ){  
   
   new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});  
   

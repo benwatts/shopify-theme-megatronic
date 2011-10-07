@@ -18,10 +18,10 @@
 					<div class="product-desc">            
 						<h3><a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
               {{ collection.title | escape | truncate: 35 }}
-            </a></3>
-            <small class="numitems">
+            </a></h3>
+            <p class="numitems">
               {{ collection.all_products_count }} {{ collection.all_products_count | pluralize: 'item', 'items' }}
-            </small>					
+            </p>					
 					</div>
 				</li>
 		  {% endunless %}

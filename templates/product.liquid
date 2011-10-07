@@ -1,82 +1,83 @@
 <div class="col-content">
-	
-	<div id="single-product" class="product-{{ product.handle }} clearfix">
-	
-		<div id="product-photos" class="clearfix">
-			<div class="large-thumb">
-				<a class="lightbox" href="{{ product.featured_image | product_img_url: 'large' }}">
-					<img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" />
-				</a>
-			</div>
-			
-			{% if product.images.size > 1 %}
-			<ul id="product-thumbs">
-	      {% for image in product.images %}
-					<li class="{% if forloop.first %} zoomThumbActive first{% endif %}">
-						<a class="lightbox" href="{{ image | product_img_url: 'large' }}">
-							<img src="{{ image | product_img_url: 'thumb' }}" alt="{{ image.title | escape }}">
-						</a>
-					</li>
-	      {% endfor %}				
-			</ul>
-			{% endif %}			
-		</div><!-- /#product-photos -->
-			
-		<div id="product-details" class="right">
-			<div class="product-name">
-				<h1>{{ product.title }}</h1>
-			</div>
+  
+  <div id="single-product" class="product-{{ product.handle }} clearfix">
+  
+    <div id="product-photos" class="clearfix">
+      <div class="large-thumb">
+        <a class="lightbox" href="{{ product.featured_image | product_img_url: 'large' }}">
+          <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" />
+        </a>
+      </div>
+      
+      {% if product.images.size > 1 %}
+      <ul id="product-thumbs">
+        {% for image in product.images %}
+          <li class="{% if forloop.first %} zoomThumbActive first{% endif %}">
+            <a class="lightbox" href="{{ image | product_img_url: 'large' }}">
+              <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ image.title | escape }}">
+            </a>
+          </li>
+        {% endfor %}        
+      </ul>
+      {% endif %}     
+    </div><!-- /#product-photos -->
+      
+    <div id="product-details" class="right">
+      <div class="product-name">
+        <h1>{{ product.title }}</h1>
+      </div>
 
-			<div class="options clearfix">			
-				{% if product.available %}
-				<p id="add-to-cart-msg"></p>																												
-			  <p class="price"></p>	  
-			  <form action="/cart/add" method="post" class="variants clearfix">				
-																																								
-					<div class="variants-wrapper{%if product.variants.size == 1 and product.options.size == 1 %} visuallyhidden{% endif %}"> {% comment %} Hide the dropdown if we've only got one variant and one option to show. {% endcomment %}
-			      <select id="product-select" name="id">
-			        {% for variant in product.variants %}
-			        <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
-			        {% endfor %}
-			      </select>
-					</div>
-					
-		      <input class="btn" type="submit" name="add" id="add-to-cart" value="Add to Cart" />
-		    </form>
-				{% else %}
-					<p class="completely-sold-out">This product is currently sold out.</p>
-				{% endif %}
-			</div><!-- /.options -->
-			
-			<div class="description">
-				{{ product.description }}
-			</div>			
-		</div><!-- /#product-details -->
+      <div class="options clearfix">      
+        {% if product.available %}
+        <p id="add-to-cart-msg"></p>                                                        
+        <p class="price"></p>   
+        <form action="/cart/add" method="post" class="variants clearfix">       
+                                                                                
+          <div class="variants-wrapper{%if product.variants.size == 1 and product.options.size == 1 %} visuallyhidden{% endif %}"> {% comment %} Hide the dropdown if we've only got one variant and one option to show. {% endcomment %}
+            <select id="product-select" name="id">
+              {% for variant in product.variants %}
+              <option value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <input class="btn" type="submit" name="add" id="add-to-cart" value="Add to Cart" />
+        </form>
+        {% else %}
+          <p class="completely-sold-out">This product is currently sold out.</p>
+        {% endif %}
+      </div><!-- /.options -->
+      
+      <div class="description">
+        {% include 'share-list' %}
+        {{ product.description }}
+      </div>      
+    </div><!-- /#product-details -->
 
-	</div><!-- /#single-product -->
+  </div><!-- /#single-product -->
 
 
-	{% if settings.product_collection_visible == true %}
-		{% if settings.product_collection_name and settings.product_collection_name != "" %}
-	
-		{% if collections[settings.product_collection_name].products.size > 0 %}
-		<!-- A collection of products -->
-		<section class="products-4up diagonal-divider">
-			<div class="section-details">
-				<h2>{{collections[settings.product_collection_name].title}}</h2>
-			</div>		
-			<table cellpadding="0" cellspacing="0" class="products-grid">
-	  		{% tablerow product in collections[settings.product_collection_name].products cols: 4 %}      		
-	      	{% include 'product-grid-item' %}
-	      {% endtablerow %}					
-			</table>
-		</section>
-		{% endif %}
-		
-		{% else %}
-			<p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable this item so it no longer appears here on the product page.</p>
-		{% endif %}	
-	{% endif %}	
+  {% if settings.product_collection_visible == true %}
+    {% if settings.product_collection_name and settings.product_collection_name != "" %}
+  
+    {% if collections[settings.product_collection_name].products.size > 0 %}
+    <!-- A collection of products -->
+    <section class="products-4up diagonal-divider">
+      <div class="section-details">
+        <h2>{{collections[settings.product_collection_name].title}}</h2>
+      </div>    
+      <table cellpadding="0" cellspacing="0" class="products-grid">
+        {% tablerow product in collections[settings.product_collection_name].products cols: 4 %}          
+          {% include 'product-grid-item' %}
+        {% endtablerow %}         
+      </table>
+    </section>
+    {% endif %}
+    
+    {% else %}
+      <p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable this item so it no longer appears here on the product page.</p>
+    {% endif %} 
+  {% endif %} 
 
 
 </div><!-- /.col-content -->
@@ -84,6 +85,7 @@
 
 
 <div class="col-browse">
-	{% include 'left-col-nav' %}
-	{% include 'left-col-ads' %}
+  {% include 'left-col-nav' %}
+  {% include 'left-col-social' %}  
+  {% include 'left-col-ads' %}
 </div><!-- /#col-browse -->

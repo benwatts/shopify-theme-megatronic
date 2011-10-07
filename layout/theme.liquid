@@ -11,12 +11,12 @@
 		Provide a *slightly* better product description for search engines. 
 		Descriptions don't affect rankings, but can influence click-throughs.
 	{% endcomment %}
-	{% if template == "product" %}
-		<meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {{ product.price | money }}">
-	{% else %}
-		<meta name="description" content="{{ settings.site_description }}">
+	{% if template contains "product" %}
+    <meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {{ product.price | money }}">
+  {% elsif template == "index" %}
+    <meta name="description" content="{{ settings.site_description }}">
 	{% endif %}
-	
+
   <title>{% if template == "index" %} {{ shop.name }} {% else %} {{ page_title }} &ndash; {{ shop.name }} {% endif %}</title>
 	
   {{ content_for_header }}
@@ -33,14 +33,12 @@
 
   {{ 'style.css' | asset_url | stylesheet_tag }}	
 	{{ 'facebox.css' | asset_url | stylesheet_tag }}
-	{{ 'option_selection.js' | asset_url | script_tag }}  
+	{{ 'option_selection.js' | shopify_asset_url | script_tag }}
 	
-  {% capture active_url %}{% if template == "index" %}/{% elsif template == "collection" %}/collections/{{ collection.handle }}{% elsif template == "product" %}{% if collection %}/collections/{{ collection.handle }}{% endif %}/products/{{ product.handle }}{% elsif template == "page" %}/pages/{{ page.handle }}{% elsif template == "blog" %}/blogs/{{ blog.handle }}{% elsif template == "cart" %}/cart{% elsif template == "search" %}/search{% endif %}{% endcapture %}
 </head>
 
-<body id="template-{{template | replace: '/', '-' }}">
-	
-	
+<body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace: '.', ' ' | replace: '/', '-' | truncatewords: 1, '' }}" id="{{ page_title | handle }}">
+
 	<!-- Header -->
 	<div id="header-wrapper">
 		<div id="header" class="wrapper clearfix">
@@ -121,10 +119,7 @@
 		<!-- Main Content -->
 		<div id="main" class="wrapper clearfix">
 			<div class="content-wrapper clearfix">
-			
-				{% if flash.error %}<div class="flash error">{{ flash.error }}</div>{% endif %}
-				{% if flash.notice %}<div class="flash notice">{{ flash.notice }}</div>{% endif %}		
-		
+					
 				{% if template == 'list-collections' %}
 					{% include 'collection-listing' %}
 				{% else %}
@@ -142,7 +137,7 @@
 	<div id="footer-wrapper">
 		<div id="footer" class="wrapper clearfix">
 						
-			<div class="join-newsletter">
+			<div class="join-newsletter footer-col">
 				<h3>Join our Mailing List</h3> 
 				{% form 'customer' %}
 				
@@ -167,16 +162,32 @@
 				{% endform %}			
 			</div>
 			
-			<div class="footer-linklists">
+			<div class="footer-linklists footer-col">
 				{% include 'footer-linklist' with settings.footer_linklist_1 %}				
 				{% include 'footer-linklist' with settings.footer_linklist_2 %}				
 				{% include 'footer-linklist' with settings.footer_linklist_3 %}									
-			</div>
+			</div>			
 			
-			<div class="footer-text">
+			<div class="footer-text footer-col">
 				<p>{{ settings.footer_txt | newline_to_br }}</p>
 				<p class="poweredby">{{ powered_by_link }}</p>				
 			</div>
+
+		{% if settings.show_amex || settings.show_discover || settings.show_visa || settings.show_mastercard || settings.show_maestro || settings.show_cirrus || settings.show_paypal || settings.show_google %}
+		<div id="footer-payment-methods">
+			<p>Payment methods we accept</p>
+			{% if settings.show_amex %} 			{{ 'cc-amex.png' | asset_url | img_tag }} {% endif %}
+			{% if settings.show_discover %} 	{{ 'cc-discover.png' | asset_url | img_tag }} {% endif %}
+			{% if settings.show_visa %} 			{{ 'cc-visa.png' | asset_url | img_tag }} {% endif %}			
+			{% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag }} {% endif %}			
+			{% if settings.show_maestro %} 		{{ 'cc-maestro.png' | asset_url | img_tag }} {% endif %}
+			{% if settings.show_cirrus %} 		{{ 'cc-cirrus.png' | asset_url | img_tag }} {% endif %}	
+			{% if settings.show_paypal %} 		{{ 'cc-paypal.png' | asset_url | img_tag }} {% endif %}
+			{% if settings.show_google %} 		{{ 'cc-google.png' | asset_url | img_tag }} {% endif %}			
+		</div>
+		{% endif %}
+
+
 		
 		</div><!-- /#footer -->
 	</div><!-- /#footer-wrapper -->
@@ -221,11 +232,35 @@
 			  {% endif %}
 			{% endfor %}	
 
-			$('.lightbox').facebox();
+		  $('.lightbox').facebox({
+			  loadingImage: '{{ "loading.gif" | asset_url }}', 
+			  closeImage:  '{{ "closelabel.png" | asset_url }}'
+			}); 
 			
 		});
 		// ]]>
-		</script>
+		</script>		
+
+		<!-- fb like button -->
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+    <!-- +1 button -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+
+    <!-- tweet btn -->
+    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 
 	{% endif %}
 				

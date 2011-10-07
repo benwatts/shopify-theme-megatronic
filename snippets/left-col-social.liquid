@@ -1,0 +1,10 @@
+{%if settings.sm_facebook || settings.sm_twitter || settings.sm_youtube || settings.sm_flickr %}
+<div id="widget-socialmedia" class="widget widget-linklist">
+  <ul>
+    {%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}">{{settings.sm_facebook_label}}</a></li>{% endif %}
+    {%if settings.sm_twitter %}<li id="sm-twitter"><a href="{{settings.sm_twitter_link}}">{{settings.sm_twitter_label}}</a></li>{% endif %}
+    {%if settings.sm_youtube %}<li id="sm-youtube"><a href="{{settings.sm_youtube_link}}">{{settings.sm_youtube_label}}</a></li>{% endif %}
+    {%if settings.sm_flickr %}<li id="sm-flickr"><a href="{{settings.sm_flickr_link}}">{{settings.sm_flickr_label}}</a></li>{% endif %}
+  </ul>
+</div>
+{% endif %}
