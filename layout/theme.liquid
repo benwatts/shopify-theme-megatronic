@@ -200,7 +200,8 @@
 	
 	{%if product %}
 		<script>
-		// <![CDATA[  
+
+		{% if product.available %}
 		var selectCallback = function(variant, selector) {
 		  if (variant && variant.available == true) {
 		    // selected a valid variant
@@ -231,14 +232,15 @@
 			    {% endfor %}
 			  {% endif %}
 			{% endfor %}	
-
-		  $('.lightbox').facebox({
-			  loadingImage: '{{ "loading.gif" | asset_url }}', 
-			  closeImage:  '{{ "closelabel.png" | asset_url }}'
-			}); 
 			
 		});
-		// ]]>
+		{% endif %}
+		
+
+	  $('.lightbox').facebox({
+		  loadingImage: '{{ "loading.gif" | asset_url }}', 
+		  closeImage:  '{{ "closelabel.png" | asset_url }}'
+		}); 
 		</script>		
 
 		<!-- fb like button -->
