@@ -12,6 +12,10 @@ $( function(){
 
   // Adjust the width of the main menu depending on how much space the customer controls on the right takes up
   $('#nav').width( $('#top-menu').width() - $('#customer-controls').width() - 30 );
+
+  // Adjust the height of the customer controls links, just in case the nav goes on two lines
+  var padding = parseInt($('#customer-controls li:first').css('paddingTop').split('px')[0]) + parseInt($('#customer-controls li:first').css('paddingBottom').split('px')[0]);
+  $('#customer-controls li').height( $('#top-menu').height() - padding );
 });
 
 

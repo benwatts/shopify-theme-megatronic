@@ -2,10 +2,10 @@
  * Megatronic
  * A Shopify theme. 
  *
- * Last update: October 7, 2011
+ * Last update: October 11, 2011
  * 
  * @version     1.1.0
- * @author      bw @ Shopify
+ * @author      Ben Watts @ Shopify
  * @theme_url   http://megatronic-theme.myshopify.com/
  *
  * Need Support?  
@@ -221,7 +221,6 @@ li{ margin: 0 0 .75em 0; }
 
 #header-wrapper{
   background: {{ settings.header_colour }} url( {{'header-gradient-white.png'|asset_url}} ) 0 0 repeat-x;
-  border-bottom: solid 1px #262f33;
   }
 .ie6 #header-wrapper{ background-image: none; } 
 #header{
@@ -299,23 +298,6 @@ li{ margin: 0 0 .75em 0; }
   font-size: 13px;
   }
 
-/** 
- * Search > Template 
- */ 
-
-.search-large{ 
-  margin: 15px 0;
-  }
-.search-large-input{
-  font-size: 1.538461538em; /* 18/13 */
-  padding: 6px;
-  width: 400px;
-  }
-#search .search-large-submit{
-  padding: 7px 6px;
-  font-size: 1.076923077em; /* 14/13 */  
-  font-weight: normal;
-  }
 
 
 /**
@@ -395,24 +377,21 @@ li{ margin: 0 0 .75em 0; }
   width: 150px;
   padding: 6px;
   background: {{ settings.link_active_colour }};
-  border: solid 1px #fff;
   border-top: none;
-  -moz-border-radius: 0 4px 4px 4px; -webkit-border-radius: 0 4px 4px 4px; border-radius: 0 4px 4px 4px;  
+  -moz-box-shadow: 0 1px 3px rgba(255,255,255,.25); -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.25); box-shadow: 0 1px 3px rgba(0,0,0,.25);
   } 
 #top-menu .has-dropdown li{
   float: none;
-  border-bottom: solid 1px #f8cc7b;
-  padding-bottom: 3px;
-  margin-bottom: 3px;
+  border-bottom: solid 1px {{ settings.dd_link_divider_colour }};
   }
 #nav .has-dropdown li a{ 
-  color: {{ settings.link_hover_colour }};
-  padding: 4px;
+  color: {{ settings.dd_link_colour }};
+  padding: 6px 4px;
   margin: 0;
   }
 #nav .has-dropdown li a:hover{
-  color: #2e8fc1;
-  background: #ffeba8;
+  color: {{ settings.dd_link_hover_colour }};
+  background: {{ settings.dd_link_hover_bg_colour }};
   }
   
 .top-menu .dd-arrow{ /* css triangles: http://jonrohan.me/guide/css/creating-triangles-in-css/  */
@@ -969,123 +948,23 @@ li{ margin: 0 0 .75em 0; }
 
 
 
-/** 
- * Product > Image Zoomer 
- * Slightly modified from original (http://www.mind-projects.it/projects/jqzoom/)
- */
+ /** 
+ * Search > Template 
+ */ 
 
-.zoomPad{
-  position:relative;
-  float:left;
-  z-index:99;
-  cursor:crosshair;
+.search-large{ 
+  margin: 15px 0;
   }
-
-.zoomPreload{
-   -moz-opacity:0.8;
-   opacity: 0.8;
-   filter: alpha(opacity = 80);
-   color: #333;
-   font-size: 12px;
-   text-decoration: none;
-   border: 1px solid #CCC;
-   background-color: white;
-   padding: 8px;
-   text-align:center;
-   background-image: url({{'loading.gif'|asset_url}});
-   background-repeat: no-repeat;
-   background-position: 43px 30px;
-   z-index:110;
-   width:90px;
-   height:43px;
-   position:absolute;
-   top:0px;
-   left:0px;
+.search-large-input{
+  font-size: 1.538461538em; /* 18/13 */
+  padding: 6px;
+  width: 400px;
   }
-.ie6 .zoomPreload{
-  width:100px;
-  height:49px;
-  }
-
-.zoomPup{
-  overflow:hidden;
-  background-color: #FFF;
-  -moz-opacity:0.6;
-  opacity: 0.6;
-  filter: alpha(opacity = 60);
-  z-index:120;
-  position:absolute;
-  border:1px solid #CCC;
-  z-index:101;
-  cursor:crosshair;
-  }
-
-.zoomOverlay{
-  position:absolute;
-  left:0px;
-  top:0px;
-  background:#FFF;
-  z-index:5000;
-  width:100%;
-  height:100%;
-  display:none;
-  z-index:101;
-  }
-
-.zoomWindow{
-  position:absolute;
-  left:110%;
-  top:40px;
-  background:#FFF;
-  z-index:6000;
-  height:auto;
-  z-index:10000;
-  z-index:110;
-  }
-.zoomWrapper{
-  position:relative;
-  border:1px solid #ccc;
-  z-index:110;
-  }
-.zoomWrapperTitle{
-  display:block;
-  background:#999;
-  color:#FFF;
-  height:18px;
-  line-height:18px;
-  width:100%;
-  overflow:hidden;
-  text-align:center;
-  font-size:10px;
-  position:absolute;
-  top:0px;
-  left:0px;
-  z-index:120;
-  -moz-opacity:0.6;
-  opacity: 0.6;
-  filter: alpha(opacity = 60);
-  }
-.zoomWrapperImage{
-  display:block;
-  position:relative;
-  overflow:hidden;
-  z-index:110;
-  }
-.zoomWrapperImage img{
-  border:0px;
-  display:block;
-  position:absolute;
-  z-index:101;
-  }
-
-.zoomIframe{
-  z-index: -1;
-  filter:alpha(opacity=0);
-  -moz-opacity: 0.80;
-  opacity: 0.80;
-  position:absolute;
-  display:block;
-  }
+#search .search-large-submit{
+  padding: 7px 6px;
+  font-size: 1.076923077em; /* 14/13 */  
+  font-weight: normal;
+  } 
 
 
 

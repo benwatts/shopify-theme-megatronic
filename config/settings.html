@@ -47,7 +47,6 @@
   </table>
 </fieldset>
 
-
 <fieldset>
 	<legend>Header</legend>
   <table>
@@ -61,14 +60,34 @@
 		</tr>
 		
     <tr>
-      <td><label for="header_colour">Header Colour</label></td>
+      <td><label for="header_colour">Header Background</label></td>
       <td><input id="header_colour" name="header_colour" class="color" value="#365463" /></td>
     </tr>		
 
     <tr>
-      <td><label for="topmenu_colour">Top Menu Colour</label></td>
+      <td><label for="topmenu_colour">Top Menu Background</label></td>
       <td><input id="topmenu_colour" name="topmenu_colour" class="color" value="#1B3440" /></td>
     </tr>		
+
+    <tr>
+      <td><label for="dd_link_colour">Dropdown Link Colour</label></td>
+      <td><input id="dd_link_colour" name="dd_link_colour" class="color" value="#365463" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="dd_link_hover_colour">Dropdown Link Hover Colour</label></td>
+      <td><input id="dd_link_hover_colour" name="dd_link_hover_colour" class="color" value="#2e8fc1" /></td>
+    </tr>
+
+    <tr>
+      <td><label for="dd_link_hover_bg_colour">Dropdown Hover Background</label></td>
+      <td><input id="dd_link_hover_bg_colour" name="dd_link_hover_bg_colour" class="color" value="#ffeba8" /></td>
+    </tr>    
+
+    <tr>
+      <td><label for="dd_link_divider_colour">Dropdown Link Divider Colour</label></td>
+      <td><input id="dd_link_divider_colour" name="dd_link_divider_colour" class="color" value="#f8cc7b" /></td>
+    </tr>
 		
   </table>
 </fieldset>
@@ -138,7 +157,7 @@
     </tr>   
     <tr>
       <td><label for="carousel_height">Carousel Height</label></td>
-      <td><input type="number" id="carousel_height" name="carousel_height" value="255" class="short" /> <small>px</small></td>
+      <td><input type="text" id="carousel_height" name="carousel_height" value="255" class="short" /> <small>px</small></td>
     </tr>   
     <tr>
       <td><label for="show_carousel_controls">Show carousel controls <small>(next/prev/jump to item)</small>?</label></td>
@@ -349,17 +368,7 @@
 <fieldset>
   <legend>Footer</legend>
   <table class="standard-table">
-	
-		<tr class="even">
-		  <td><label for="footer_bg_colour">Background colour</label></td>
-		  <td><input id="footer_bg_colour" name="footer_bg_colour" class="color" value="#0099ff" /></td>
-		</tr>	
-		
-		<tr class="odd">
-		  <td><label for="footer_separator_colour">Separator colour</label></td>
-		  <td><input id="footer_separator_colour" name="footer_separator_colour" class="color" value="#ff0000" /></td>
-		</tr>	
-		
+			
 		<tr class="even">
 		  <td><label for="footer_txt">Footer text</label></td>
 			<td><textarea id="footer_txt" name="footer_txt" cols="60" rows="5" id="my_textarea">Copyright Your Company, 2011. 
