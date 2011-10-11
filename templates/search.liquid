@@ -1,50 +1,71 @@
 <div class="col-content">
-		
-	<div class="page-header clearfix">
-	  <h1 class="title">Search Results</h1>
-	</div>
+    
+  {% if search.performed %}   
+    
+    <div class="page-header clearfix">
+      <h1 class="title">Search Results</h1>
+    </div>
 
-  {% if search.performed %}			
-	  {% paginate search.results by 10 %}  			
-	  {% include 'pagination' with 'top' %}
+    {% if search.results == empty %}  
+      <div class="empty">
+        Your search for "{{search.terms | escape}}" did not yield any results.
+      </div>   
+      <form id="search-no-results" action="/search" method="get" class="search-large">
+        <label for="content-search-input" class="visuallyhidden">Search</label>
+        <input type="text" id="content-search-input" name="q" class="search-large-input" value="" accesskey="4" autocomplete="off" />
+        <input type="submit" id="content-search-submit" class="search-large-submit btn" value="Search" />
+      </form>    
+                   
+    {% else %}
 
-	  {% if search.results == empty %}  
-	  <div class="empty">
-	    Your search for "{{search.terms | escape}}" did not yield any results
-	  </div>              	
-	{% else %}  
-	  <div class="search-results">
-	    {% for item in search.results %} 
-	    <div class="item clearfix">			
-				<div class="thumbnail">
-	      {% if item.featured_image %}
-	        <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag }}</a>
-				{% else %}
-					<a href="{{ item.url }}"><img src="{{ "generic-page-icon.jpg" | asset_url }}" alt="Generic page thumbnail" /></a>					
-	      {% endif %}
-	     	</div>			
+      {% paginate search.results by 10 %}       
+      {% include 'pagination' with 'top' %}
 
-	      <div class="content">
-	        <h2>{{ item.title | link_to: item.url }}</h2>
-					{% if item.price %}
-						<p class="product-price">{{ item.price | money }}{% if item.compare_at_price_max > product.price %} <del>{{ item.compare_at_price_max | money }}</del>{% endif %}</p>
-	        {% endif %}
-					{{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
-	      </div>
+      <div class="search-results">
+        {% for item in search.results %} 
+        <div class="item clearfix">     
+          <div class="thumbnail">
+          {% if item.featured_image %}
+            <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag }}</a>
+          {% else %}
+            <a href="{{ item.url }}"><img src="{{ "generic-page-icon.jpg" | asset_url }}" alt="Generic page thumbnail" /></a>         
+          {% endif %}
+          </div>      
 
-	    </div> <!-- end .item -->
-	    {% endfor %}
-	  </div> <!-- end .results -->
-  {% endif %}
+          <div class="content">
+            <h2>{{ item.title | link_to: item.url }}</h2>
+            {% if item.price %}
+              <p class="product-price">{{ item.price | money }}{% if item.compare_at_price_max > product.price %} <del>{{ item.compare_at_price_max | money }}</del>{% endif %}</p>
+            {% endif %}
+            {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
+          </div>
 
-  {% include 'pagination' %}
-  {% endpaginate %}
+        </div> <!-- end .item -->
+        {% endfor %}
+      </div> <!-- end .results -->
+
+      {% include 'pagination' %}
+      {% endpaginate %}
+    {% endif %}
+
+ {% else %}
+
+  <div class="page-header clearfix">
+    <h1 class="title">Search</h1>
+  </div>
+  <form id="search-empty" action="/search" method="get" class="search-large">
+    <label for="content-search-input" class="visuallyhidden">Search</label>
+    <input type="text" id="content-search-input" name="q" class="search-large-input" value="" accesskey="4" autocomplete="off" />
+    <input type="submit" id="content-search-submit" class="search-large-submit btn" value="Search" />
+  </form>    
+   
  {% endif %}
 
 </div><!-- /#col-content -->
 
 
 <div class="col-browse">
-	{% include 'left-col-nav' %}
-	{% include 'left-col-ads' %}
+  {% include 'left-col-nav' %}
+  {% include 'left-col-social' %}     
+  {% include 'left-col-ads' %}
 </div><!-- /#col-browse -->

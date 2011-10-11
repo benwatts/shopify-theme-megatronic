@@ -159,7 +159,7 @@ label{
  * Generic 
  */
 
-body{ background: #f0f0f0; }
+body, html{ height: 100%; background: #f0f0f0; }
 
 body, select, input, textarea {
   color: #444;
@@ -299,6 +299,23 @@ li{ margin: 0 0 .75em 0; }
   font-size: 13px;
   }
 
+/** 
+ * Search > Template 
+ */ 
+
+.search-large{ 
+  margin: 15px 0;
+  }
+.search-large-input{
+  font-size: 1.538461538em; /* 18/13 */
+  padding: 6px;
+  width: 400px;
+  }
+#search .search-large-submit{
+  padding: 7px 6px;
+  font-size: 1.076923077em; /* 14/13 */  
+  font-weight: normal;
+  }
 
 
 /**
@@ -1385,7 +1402,9 @@ th.empty{
   padding: 20px 0 20px 0;
   font-size: 0.846153846em; /* 11/13 */ 
   }
-#footer{ margin-bottom: 20px; } 
+#footer{ 
+  margin-bottom: 20px;
+  } 
 
 #footer h3{
   color: {{ settings.header_colour }};
