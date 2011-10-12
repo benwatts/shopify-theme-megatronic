@@ -242,8 +242,9 @@ $(window).load( function(){
         w = $(this).width();
     if( h < photoContainerHeight )
       $(this).css({marginTop: (photoContainerHeight/2 - h/2) + 'px'})
-    if( w < photoContainerWidth )
-      $(this).css({marginLeft: (photoContainerWidth/2 - w/2) + 'px' })
+    //if( w < photoContainerWidth )
+    //  alert(photoContainerWidth/2 - w/2);
+    //  $(this).css({marginLeft: (photoContainerWidth/2 - w/2) + 'px' })
   });
 });
 
