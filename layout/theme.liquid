@@ -209,7 +209,7 @@
 		    if(variant.compare_at_price == null){
 		    	$('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}")+'</strong>');
 		    } else {
-		    	$('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '</strong> <span class="compare_at_price">from <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
+		    	$('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '</strong> <span class="compare_at_price">was <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
 		    }
 		  } else {
 		    // variant doesn't exist
