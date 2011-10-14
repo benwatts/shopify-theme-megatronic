@@ -4,246 +4,253 @@
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	
-	{% comment %} 
-		Provide a *slightly* better product description for search engines. 
-		Descriptions don't affect rankings, but can influence click-throughs.
-	{% endcomment %}
-	{% if template contains "product" %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+  {% comment %} 
+    Provide a *slightly* better product description for search engines. 
+    Descriptions don't affect rankings, but can influence click-throughs.
+  {% endcomment %}
+  {% if template contains "product" %}
     <meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {{ product.price | money }}">
   {% elsif template == "index" %}
     <meta name="description" content="{{ settings.site_description }}">
-	{% endif %}
+  {% endif %}
+
+  <meta property="og:site_name" content="{{ shop.name }}" />
+  {% if template contains 'product' %}
+  <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
+  {% else %}
+  <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
+  {% endif %}  
 
   <title>{% if template == "index" %} {{ shop.name }} {% else %} {{ page_title }} &ndash; {{ shop.name }} {% endif %}</title>
-	
+  
   {{ content_for_header }}
 
-	{% if settings.header_font == "Chewy, arial, sans-serif" %}
-		<link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
-	{% elsif settings.header_font == "Copse, arial, sans-serif" %}
-		<link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
-		{% elsif settings.header_font == "Play, arial, sans-serif" %}
-	<link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-		{% elsif settings.header_font == "Arvo, arial, sans-serif" %}
-		<link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
-	{% endif %}	
+  {% if settings.header_font == "Chewy, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+  {% elsif settings.header_font == "Copse, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
+    {% elsif settings.header_font == "Play, arial, sans-serif" %}
+  <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+    {% elsif settings.header_font == "Arvo, arial, sans-serif" %}
+    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+  {% endif %} 
 
-  {{ 'style.css' | asset_url | stylesheet_tag }}	
-	{{ 'facebox.css' | asset_url | stylesheet_tag }}
-	{{ 'option_selection.js' | shopify_asset_url | script_tag }}
-	
+  {{ 'style.css' | asset_url | stylesheet_tag }}  
+  {{ 'facebox.css' | asset_url | stylesheet_tag }}
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  
 </head>
 
 <body class="{% if customer %}customer-logged-in{% endif %} template-{{ template | replace: '.', ' ' | replace: '/', '-' | truncatewords: 1, '' }}" id="{{ page_title | handle }}">
 
-	<!-- Header -->
-	<div id="header-wrapper">
-		<div id="header" class="wrapper clearfix">
-			
-			{% if template == "index" %} <h1 id="site-title"> {% else %} <strong id="site-title"> {% endif %}
-				<a href="/" title="Home">
-					{% if settings.use_logo_image == true %} <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /> {% else %} {{ shop.name }} {% endif %}				
-				</a>
-			{% if template == "index" %} </h1> {% else %} </strong> {% endif %}
-		
-			<form id="search" action="/search" method="get">
-				<label for="top-search-input" class="visuallyhidden">Search</label>
-				<input type="text" id="top-search-input" name="q" class="search-input" value="" accesskey="4" autocomplete="off" />
-				<input type="submit" id="top-search-submit" name="top-search-submit" class="search-submit" value="Search" />
-			</form>
-			
-		</div><!-- /#header -->
-	</div><!-- /#header-wrapper -->
-		
-		
-	<div id="main-wrapper">
+  <!-- Header -->
+  <div id="header-wrapper">
+    <div id="header" class="wrapper clearfix">
+      
+      {% if template == "index" %} <h1 id="site-title"> {% else %} <strong id="site-title"> {% endif %}
+        <a href="/" title="Home">
+          {% if settings.use_logo_image == true %} <img src="{{ 'logo.png' | asset_url }}" alt="{{ shop.name }}" /> {% else %} {{ shop.name }} {% endif %}        
+        </a>
+      {% if template == "index" %} </h1> {% else %} </strong> {% endif %}
+    
+      <form id="search" action="/search" method="get">
+        <label for="top-search-input" class="visuallyhidden">Search</label>
+        <input type="text" id="top-search-input" name="q" class="search-input" value="" accesskey="4" autocomplete="off" />
+        <input type="submit" id="top-search-submit" name="top-search-submit" class="search-submit" value="Search" />
+      </form>
+      
+    </div><!-- /#header -->
+  </div><!-- /#header-wrapper -->
+    
+    
+  <div id="main-wrapper">
 
-		<!-- Top Menu -->
-		<div id="top-menu" class="wrapper clearfix top-menu">
-			<ul id="nav">
-			  {% for link in linklists.main-menu.links %}
-			  <li{% if link.active %} class="current"{% endif %}>
-			    {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
-			    {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
-					<div class="has-dropdown">
-			    	<a class="root" href="{{ link.url }}">{{ link.title }}<span class="dd-arrow"></span></a>
-				    <ul>
-				      {% for l in linklists[child_list_handle].links %}
-				      <li><a  href="{{ l.url }}">{{ l.title }}</a></li>
-				      {% endfor %}
-				    </ul>
-					</div>
-					{% else %}
-			    	<a class="root" href="{{ link.url }}">{{ link.title }}</a>
-			    {% endif %}
-			  </li>
-			  {% endfor %}
-			</ul><!-- /#nav -->
-		
-			<ul id="customer-controls">
-				{% if shop.customer_accounts_enabled %}
-				<li class="customer-account-links">
-				  {% if customer %}
-				    <p>{{ customer.first_name }} {{ '(Logout)' | customer_logout_link }}</p>
-				  {% else %}
-				    <p>{{ 'Login' | customer_login_link }}</p>
-				  {% endif %}
-				</li>
-				{% endif %}			
-			
-				{% if customer %}
-				<li>
-					<a href="/account">My Account</a>
-				</li>
-				{% endif %}		
-			
-				<li class="cart-link">
-					<a href="/cart" class="num-items-in-cart">
-						<span id="top-cartlink-text" class="icon">
-							{% if cart.item_count == 0 %}
-								Your cart is empty
-							{% else %}
-		         		<span class="num">{{ cart.item_count }}</span> item{% if cart.item_count != 1 %}s{% endif %}
-							{% endif %}
-						</span>
-	        </a>						 
-				</li>
-			</ul><!-- #customer-controls -->
-		</div><!-- /#top-menu -->	
-	
-	
-	
-		<!-- Main Content -->
-		<div id="main" class="wrapper clearfix">
-			<div class="content-wrapper clearfix">
-					
-				{% if template == 'list-collections' %}
-					{% include 'collection-listing' %}
-				{% else %}
-					{{ content_for_layout }}
-				{% endif %}
-				
-			</div><!-- /.content -->
-	  </div><!-- /#main -->
-	
-	</div><!-- /#main-wrapper -->
-
-
-
-	<!-- Footer -->
-	<div id="footer-wrapper">
-		<div id="footer" class="wrapper clearfix">
-						
-			<div class="join-newsletter footer-col">
-				<h3>Join our Mailing List</h3> 
-				{% form 'customer' %}
-				
-			    {% if form.posted_successfully? %}
-			      <p class="success-msg">Thanks for joining!</p>
-			    {% endif %}
-
-			    {% if form.errors %}
-						<p class="error-msg">
-			      {% for field in form.errors %}
-			        {{ field }} - {{ form.errors.messages[field] }}
-			      {% endfor %}
-						</p>
-			    {% endif %}
-				
-					<input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
-					<div id="newsletter-signup">
-						<label for="newsletter-email">Email address:</label>
-						<input type="email" class="email" id="newsletter-email" name="contact[email]" />
-						<input type="submit" class="submit btn" value="Join" />
-					</div>
-				{% endform %}			
-			</div>
-			
-			<div class="footer-linklists footer-col">
-				{% include 'footer-linklist' with settings.footer_linklist_1 %}				
-				{% include 'footer-linklist' with settings.footer_linklist_2 %}				
-				{% include 'footer-linklist' with settings.footer_linklist_3 %}									
-			</div>			
-			
-			<div class="footer-text footer-col">
-				<p>{{ settings.footer_txt | newline_to_br }}</p>
-				<p class="poweredby">{{ powered_by_link }}</p>				
-			</div>
-
-		{% if settings.show_amex || settings.show_discover || settings.show_visa || settings.show_mastercard || settings.show_maestro || settings.show_cirrus || settings.show_paypal || settings.show_google %}
-		<div id="footer-payment-methods">
-			<p>Payment methods we accept</p>
-			{% if settings.show_amex %} 			{{ 'cc-amex.png' | asset_url | img_tag }} {% endif %}
-			{% if settings.show_discover %} 	{{ 'cc-discover.png' | asset_url | img_tag }} {% endif %}
-			{% if settings.show_visa %} 			{{ 'cc-visa.png' | asset_url | img_tag }} {% endif %}			
-			{% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag }} {% endif %}			
-			{% if settings.show_maestro %} 		{{ 'cc-maestro.png' | asset_url | img_tag }} {% endif %}
-			{% if settings.show_cirrus %} 		{{ 'cc-cirrus.png' | asset_url | img_tag }} {% endif %}	
-			{% if settings.show_paypal %} 		{{ 'cc-paypal.png' | asset_url | img_tag }} {% endif %}
-			{% if settings.show_google %} 		{{ 'cc-google.png' | asset_url | img_tag }} {% endif %}			
-		</div>
-		{% endif %}
+    <!-- Top Menu -->
+    <div id="top-menu" class="wrapper clearfix top-menu">
+      <ul id="nav">
+        {% for link in linklists.main-menu.links %}
+        <li{% if link.active %} class="current"{% endif %}>
+          {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
+          {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+          <div class="has-dropdown">
+            <a class="root" href="{{ link.url }}">{{ link.title }}<span class="dd-arrow"></span></a>
+            <ul>
+              {% for l in linklists[child_list_handle].links %}
+              <li><a  href="{{ l.url }}">{{ l.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% else %}
+            <a class="root" href="{{ link.url }}">{{ link.title }}</a>
+          {% endif %}
+        </li>
+        {% endfor %}
+      </ul><!-- /#nav -->
+    
+      <ul id="customer-controls">
+        {% if shop.customer_accounts_enabled %}
+        <li class="customer-account-links">
+          {% if customer %}
+            <p>{{ customer.first_name }} {{ '(Logout)' | customer_logout_link }}</p>
+          {% else %}
+            <p>{{ 'Login' | customer_login_link }}</p>
+          {% endif %}
+        </li>
+        {% endif %}     
+      
+        {% if customer %}
+        <li>
+          <a href="/account">My Account</a>
+        </li>
+        {% endif %}   
+      
+        <li class="cart-link">
+          <a href="/cart" class="num-items-in-cart">
+            <span id="top-cartlink-text" class="icon">
+              {% if cart.item_count == 0 %}
+                Your cart is empty
+              {% else %}
+                <span class="num">{{ cart.item_count }}</span> item{% if cart.item_count != 1 %}s{% endif %}
+              {% endif %}
+            </span>
+          </a>             
+        </li>
+      </ul><!-- #customer-controls -->
+    </div><!-- /#top-menu --> 
+  
+  
+  
+    <!-- Main Content -->
+    <div id="main" class="wrapper clearfix">
+      <div class="content-wrapper clearfix">
+          
+        {% if template == 'list-collections' %}
+          {% include 'collection-listing' %}
+        {% else %}
+          {{ content_for_layout }}
+        {% endif %}
+        
+      </div><!-- /.content -->
+    </div><!-- /#main -->
+  
+  </div><!-- /#main-wrapper -->
 
 
-		
-		</div><!-- /#footer -->
-	</div><!-- /#footer-wrapper -->
-	
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
-	{{ 'jquery.hoverintent.js' | asset_url | script_tag }}		
-	{{ 'jquery.tools.min.js' | asset_url | script_tag }}	
-	{{ 'facebox.js' | asset_url | script_tag }}
-	
-	{%if product %}
-		<script>
+  <!-- Footer -->
+  <div id="footer-wrapper">
+    <div id="footer" class="wrapper clearfix">
+            
+      <div class="join-newsletter footer-col">
+        <h3>Join our Mailing List</h3> 
+        {% form 'customer' %}
+        
+          {% if form.posted_successfully? %}
+            <p class="success-msg">Thanks for joining!</p>
+          {% endif %}
 
-		{% if product.available %}
-		var selectCallback = function(variant, selector) {
-		  if (variant && variant.available == true) {
-		    // selected a valid variant
-		    $('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
-		    if(variant.compare_at_price == null){
-		    	$('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}")+'</strong>');
-		    } else {
-		    	$('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '</strong> <span class="compare_at_price">was <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
-		    }
-		  } else {
-		    // variant doesn't exist
-		    $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
-		    var message = variant ? "Sold Out" : "Unavailable";    
-		    $('.options .price').text(message); // update price-field message
-		  }
-		};
+          {% if form.errors %}
+            <p class="error-msg">
+            {% for field in form.errors %}
+              {{ field }} - {{ form.errors.messages[field] }}
+            {% endfor %}
+            </p>
+          {% endif %}
+        
+          <input type="hidden" id="contact_tags" name="contact[tags]" value="prospect,newsletter"/>
+          <div id="newsletter-signup">
+            <label for="newsletter-email">Email address:</label>
+            <input type="email" class="email" id="newsletter-email" name="contact[email]" />
+            <input type="submit" class="submit btn" value="Join" />
+          </div>
+        {% endform %}     
+      </div>
+      
+      <div class="footer-linklists footer-col">
+        {% include 'footer-linklist' with settings.footer_linklist_1 %}       
+        {% include 'footer-linklist' with settings.footer_linklist_2 %}       
+        {% include 'footer-linklist' with settings.footer_linklist_3 %}                 
+      </div>      
+      
+      <div class="footer-text footer-col">
+        <p>{{ settings.footer_txt | newline_to_br }}</p>
+        <p class="poweredby">{{ powered_by_link }}</p>        
+      </div>
 
-		// initialize multi selector for product
-		$(function() {
-		  new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
-			{% assign found_one_in_stock = false %}
+    {% if settings.show_amex || settings.show_discover || settings.show_visa || settings.show_mastercard || settings.show_maestro || settings.show_cirrus || settings.show_paypal || settings.show_google %}
+    <div id="footer-payment-methods">
+      <p>Payment methods we accept</p>
+      {% if settings.show_amex %}       {{ 'cc-amex.png' | asset_url | img_tag }} {% endif %}
+      {% if settings.show_discover %}   {{ 'cc-discover.png' | asset_url | img_tag }} {% endif %}
+      {% if settings.show_visa %}       {{ 'cc-visa.png' | asset_url | img_tag }} {% endif %}     
+      {% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag }} {% endif %}     
+      {% if settings.show_maestro %}    {{ 'cc-maestro.png' | asset_url | img_tag }} {% endif %}
+      {% if settings.show_cirrus %}     {{ 'cc-cirrus.png' | asset_url | img_tag }} {% endif %} 
+      {% if settings.show_paypal %}     {{ 'cc-paypal.png' | asset_url | img_tag }} {% endif %}
+      {% if settings.show_google %}     {{ 'cc-google.png' | asset_url | img_tag }} {% endif %}     
+    </div>
+    {% endif %}
 
-			{% for variant in product.variants %}
-			  {% if variant.available and found_one_in_stock == false %}
-			    {% assign found_one_in_stock = true %}
-			    {% for option in product.options %}
-			    $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
-			    {% endfor %}
-			  {% endif %}
-			{% endfor %}	
-			
-		});
-		{% endif %}
-		
 
-	  $('.lightbox').facebox({
-		  loadingImage: '{{ "loading.gif" | asset_url }}', 
-		  closeImage:  '{{ "closelabel.png" | asset_url }}'
-		}); 
-		</script>		
+    
+    </div><!-- /#footer -->
+  </div><!-- /#footer-wrapper -->
+  
 
-		<!-- fb like button -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+  {{ 'jquery.hoverintent.js' | asset_url | script_tag }}    
+  {{ 'jquery.tools.min.js' | asset_url | script_tag }}  
+  {{ 'facebox.js' | asset_url | script_tag }}
+  
+  {%if product %}
+    <script>
+
+    {% if product.available %}
+    var selectCallback = function(variant, selector) {
+      if (variant && variant.available == true) {
+        // selected a valid variant
+        $('#add-to-cart').removeClass('disabled').removeAttr('disabled'); // remove unavailable class from add-to-cart button, and re-enable button
+        if(variant.compare_at_price == null){
+          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}")+'</strong>');
+        } else {
+          $('.options .price').html('<strong>'+Shopify.formatMoney(variant.price, "{{shop.money_with_currency_format}}") + '</strong> <span class="compare_at_price">was <del>' + Shopify.formatMoney(variant.compare_at_price, "{{shop.money_with_currency_format}}") + '</del></span>');
+        }
+      } else {
+        // variant doesn't exist
+        $('#add-to-cart').addClass('disabled').attr('disabled', 'disabled');      // set add-to-cart button to unavailable class and disable button
+        var message = variant ? "Sold Out" : "Unavailable";    
+        $('.options .price').text(message); // update price-field message
+      }
+    };
+
+    // initialize multi selector for product
+    $(function() {
+      new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+      {% assign found_one_in_stock = false %}
+
+      {% for variant in product.variants %}
+        {% if variant.available and found_one_in_stock == false %}
+          {% assign found_one_in_stock = true %}
+          {% for option in product.options %}
+          $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+          {% endfor %}
+        {% endif %}
+      {% endfor %}  
+      
+    });
+    {% endif %}
+    
+
+    $('.lightbox').facebox({
+      loadingImage: '{{ "loading.gif" | asset_url }}', 
+      closeImage:  '{{ "closelabel.png" | asset_url }}'
+    }); 
+    </script>   
+
+    <!-- fb like button -->
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) {return;}
@@ -264,36 +271,36 @@
     <!-- tweet btn -->
     <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
 
-	{% endif %}
-				
+  {% endif %}
+        
   {% if template contains 'customers' %}
     {{ "shopify_common.js" | shopify_asset_url | script_tag }}
     {{ "customer_area.js"  | shopify_asset_url | script_tag }}
   {% endif %}
 
-	{% if (template contains 'cart') AND (settings.settings.shipping_calculator == "enabled")  %}
-		<script type="text/javascript" charset="utf-8">
-			if (typeof Shopify.onCartShippingRatesUpdate === 'undefined') {
-			  document.write({{ "api.jquery.js" | shopify_asset_url | script_tag | json }});
-			}
-			</script>
+  {% if (template contains 'cart') AND (settings.settings.shipping_calculator == "enabled")  %}
+    <script type="text/javascript" charset="utf-8">
+      if (typeof Shopify.onCartShippingRatesUpdate === 'undefined') {
+        document.write({{ "api.jquery.js" | shopify_asset_url | script_tag | json }});
+      }
+      </script>
 
-			{{ "//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" | script_tag }}
-			{{ "/services/javascripts/countries.js" | script_tag }}
-			{{ "shopify_common.js" | shopify_asset_url | script_tag }}
-			{{ "jquery.cart.min.js" | asset_url | script_tag }} 
+      {{ "//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" | script_tag }}
+      {{ "/services/javascripts/countries.js" | script_tag }}
+      {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+      {{ "jquery.cart.min.js" | asset_url | script_tag }} 
 
-			<script type="text/javascript" charset="utf-8">
-			Shopify.money_format = "{{ shop.money_with_currency_format }}";
-			Shopify.Cart.ShippingCalculator.show( {
-			  submitButton: '{{ settings.shipping_calculator_submit_button_label }}', 
-			  submitButtonDisabled: '{{ settings.shipping_calculator_submit_button_label_disabled }}'{% if shop.customer_accounts_enabled and customer %},
-			  customerIsLoggedIn: true{% endif %}
-			} );
-		</script>
-	{% endif %}
+      <script type="text/javascript" charset="utf-8">
+      Shopify.money_format = "{{ shop.money_with_currency_format }}";
+      Shopify.Cart.ShippingCalculator.show( {
+        submitButton: '{{ settings.shipping_calculator_submit_button_label }}', 
+        submitButtonDisabled: '{{ settings.shipping_calculator_submit_button_label_disabled }}'{% if shop.customer_accounts_enabled and customer %},
+        customerIsLoggedIn: true{% endif %}
+      } );
+    </script>
+  {% endif %}
 
-	{{ 'theme.js' | asset_url | script_tag }}
-		
+  {{ 'theme.js' | asset_url | script_tag }}
+    
 </body>
 </html>

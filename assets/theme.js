@@ -236,15 +236,10 @@ function ddOut(e){
  */
 $(window).load( function(){ 
   var photoContainerHeight = $('.thumbgrid:first .product-photo').height();
-      photoContainerWidth = $('.thumbgrid:first .product-photo').width();
   $('.thumbgrid img').each( function(){
     var h = $(this).height(),
-        w = $(this).width();
     if( h < photoContainerHeight )
       $(this).css({marginTop: (photoContainerHeight/2 - h/2) + 'px'})
-    //if( w < photoContainerWidth )
-    //  alert(photoContainerWidth/2 - w/2);
-    //  $(this).css({marginLeft: (photoContainerWidth/2 - w/2) + 'px' })
   });
 });
 
