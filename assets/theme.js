@@ -237,7 +237,7 @@ function ddOut(e){
 $(window).load( function(){ 
   var photoContainerHeight = $('.thumbgrid:first .product-photo').height();
   $('.thumbgrid img').each( function(){
-    var h = $(this).height(),
+    var h = $(this).height();
     if( h < photoContainerHeight )
       $(this).css({marginTop: (photoContainerHeight/2 - h/2) + 'px'})
   });
