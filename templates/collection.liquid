@@ -8,17 +8,22 @@
 
     {% if collection.all_tags.size > 0 %}
     <ul class="product-tags clearfix">
+
       {% if current_tags %}
-        <li><a href="{{ collection.url }}">All</a></li>
-      {% else %}
-        <li class="active"><a href="{{ collection.url }}">All</a></li>
+        <li>
+          <a href="{% if collection.handle == 'all' %}/collections/all{% else %}{{ collection.url }}{% endif %}">All</a>
+        </li>
+       {% else %}
+        <li class="active">
+          <a href="{% if collection.handle == 'all' %}/collections/all{% else %}{{ collection.url }}{% endif %}">All</a>
+        </li>
       {% endif %}
 
       {% for tag in collection.all_tags %}
         {% if current_tags contains tag %}
-          <li class="active"><a href="{{ collection.url }}/{{ tag | handle }}">{{ tag }}</a></li>
+          <li class="active">{{ tag | link_to_remove_tag: tag }}</li>
         {% else %}
-          <li><a href="{{ collection.url }}/{{ tag | handle }}">{{ tag }}</a></li>
+          <li>{{ tag | link_to_add_tag: tag }}</li>
         {% endif %}
       {% endfor %}            
     </ul>
