@@ -1,3 +1,4 @@
+{% paginate blog.articles by 10 %}
 <div class="col-content">
 		
 	<div class="page-header clearfix">
@@ -6,7 +7,6 @@
 	
 	{% include 'blog-sidebar' %}
 
-  {% paginate blog.articles by 5 %}
   <div class="articles">
 	
     {% for article in blog.articles %}
@@ -44,9 +44,9 @@
 	  {% include 'pagination' %}
 
   </div> <!-- end .articles -->
-  {% endpaginate %}
 	
 </div><!-- /.col-content -->
+{% endpaginate %}
 
 
 <div class="col-browse">

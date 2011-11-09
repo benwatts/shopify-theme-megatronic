@@ -2,9 +2,9 @@
  * Megatronic
  * A Shopify theme. 
  *
- * Last update: October 11, 2011
+ * Last update: November 9, 2011
  * 
- * @version     1.1.1
+ * @version     1.1.2
  * @author      Ben Watts @ Shopify
  * @theme_url   http://megatronic-theme.myshopify.com/
  *
@@ -699,44 +699,42 @@ li{ margin: 0 0 .75em 0; }
 /** 
  * Paginated Results 
  */
-  
-.pagination .page{
-  padding: 4px;
-  margin: 0 4px 0 0;
-  text-align: center;
-  display: block;
+
+.pagination {
+  height: 30px;
+  margin: 0 0 25px 0;
+  }
+.pagination ul {
   float: left;
-  background: #e6e6e6 url({{'gradient-white-30.png'|asset_url}}) repeat-x 0 0;
-  border: solid 1px #ddd;
+  margin: 0;
+  border: 1px solid #eee;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   }
-.ie6 .pagination .page{ background-image: none; }
-
-.pagination .page a { 
-  display: block;
+.pagination li {
+  display: inline;
   }
-.pagination .current{
+.pagination a {
+  float: left;
+  padding: 0 10px;
+  line-height: 28px;
+  border-right: 1px solid #ddd;
+  text-decoration: none;
   background: #fff;
-  color: #DA5E13;
   }
-  
-.pagination .prev{ 
-  margin: 0 10px 0 0;
+.pagination a:hover, .pagination .active a {
+  color: #666;
+  background: #eee url({{'gradient-white-30.png'|asset_url}}) repeat-x 0 0;  
   }
-.pagination .next{
-  margin: 0 0 0 10px;
+.pagination .disabled a, .pagination .disabled a:hover {
+  background: transparent;
+  color:  #ccc;
+  cursor: default;
   }
-.pagination .prev,
-.pagination .next{
-  float: left;  
-  padding: 5px 0 0 0;
-  }
-    
-.pagination.top{
-  border-bottom: solid 1px #e6e6e6;
-  padding: 0 0 15px 0;
-  margin: 0 0 15px 0;   
-  } 
-
+.pagination .next a {
+  border: 0;
+  }  
 
 
 /** 

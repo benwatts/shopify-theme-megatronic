@@ -1,3 +1,4 @@
+{% paginate search.results by 10 %} 
 <div class="col-content">
     
   {% if search.performed %}   
@@ -17,8 +18,7 @@
       </form>    
                    
     {% else %}
-
-      {% paginate search.results by 10 %}       
+            
       {% include 'pagination' with 'top' %}
 
       <div class="search-results">
@@ -45,7 +45,7 @@
       </div> <!-- end .results -->
 
       {% include 'pagination' %}
-      {% endpaginate %}
+      
     {% endif %}
 
  {% else %}
@@ -69,3 +69,4 @@
   {% include 'left-col-social' %}     
   {% include 'left-col-ads' %}
 </div><!-- /#col-browse -->
+{% endpaginate %}
