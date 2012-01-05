@@ -78,5 +78,6 @@
      "show_google": true,
      "home_show_ads": true,
      "sm_flickr": true,
-     "show_cirrus": true}},
+     "show_cirrus": true,
+     "newsletter-signup": true}},
  "current": "Default"}
