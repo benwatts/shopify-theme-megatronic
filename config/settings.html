@@ -428,10 +428,31 @@
         <input type="checkbox" id="show_google" name="show_google" value="1" checked="checked" />
         <label for="show_google">Google Checkout</label>        
       </td>
-    </tr>     
-
+    </tr>
 
   </table>
+  
+  <h3>Newsletter:</h3>  
+  <table class="standard-table">
+    <tr class="even">
+      <td>
+        <label for="newsletter-signup">Show the newsletter signup form?</label>
+      </td>
+      <td>
+        <input type="checkbox" id="newsletter-signup" name="newsletter-signup" value="1" />
+      </td>
+    </tr>
+    <tr class="odd">
+      <td colspan="2">
+        <p>
+          The newsletter signup form will create a customer record with name 'Newsletter, Subscriber' and tags 'prospect' and 'newsletter'.
+          When a customer signs up, you will not receve an email notification. 
+          From the time the form is submitted, it may take up to 15 minutes for the new customer record to show up on your <a href="/admin/customers#f%5B%5D=tag%3A'newsletter'">Customers page</a>.
+        </p>
+      </td>
+    </tr>
+  </table>  
+  
 </fieldset>
 
 <fieldset>
