@@ -5,7 +5,7 @@
     <div id="product-photos" class="clearfix">
       <div class="large-thumb">
         <a class="lightbox" href="{{ product.featured_image | product_img_url: 'large' }}">
-          <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.title | escape }}" />
+          <img src="{{ product.featured_image | product_img_url: 'medium' }}" alt="{{ product.featured_image.alt | escape }}" />
         </a>
       </div>
       
@@ -14,7 +14,7 @@
         {% for image in product.images %}
           <li class="{% if forloop.first %} zoomThumbActive first{% endif %}">
             <a class="lightbox" href="{{ image | product_img_url: 'large' }}">
-              <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ image.title | escape }}">
+              <img src="{{ image | product_img_url: 'thumb' }}" alt="{{ image.alt | escape }}">
             </a>
           </li>
         {% endfor %}        

@@ -13,7 +13,7 @@
   {% endcomment %}
   {% if template contains "product" %}
     <meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {{ product.price | money }}">
-  {% elsif template == "index" %}
+  {% elsif template == "index" and shop.description != "" %}
     <meta name="description" content="{{ shop.description }}">
   {% endif %}
 
