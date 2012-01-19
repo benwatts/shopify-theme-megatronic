@@ -11,11 +11,16 @@
     Provide a *slightly* better product description for search engines. 
     Descriptions don't affect rankings, but can influence click-throughs.
   {% endcomment %}
-  {% if template contains "product" %}
-    <meta name="description" content="{{ product.description | strip_html | truncate: 50  }}, Price: {{ product.price | money }}">
-  {% elsif template == "index" and shop.description != "" %}
-    <meta name="description" content="{{ shop.description }}">
-  {% endif %}
+  
+  {% assign maxmeta = 155 %}
+    {% if template contains 'product' %}
+       <meta name="description" content="{{ product.description | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
+    {% elsif template contains 'page' %}
+      <meta name="description" content="{{ page.content | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
+    {% elsif template == 'index' and shop.description != '' %}
+      <meta name="description" content="{{ shop.description | strip_html | strip_newlines | truncate: maxmeta | escape}}" />
+    {% endif %}
+
 
   <meta property="og:site_name" content="{{ shop.name }}" />
   {% if template contains 'product' %}
@@ -24,8 +29,14 @@
   <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
   {% endif %}  
 
-  <title>{% if template == "index" %} {{ shop.name }} {% else %} {{ page_title }} &ndash; {{ shop.name }} {% endif %}</title>
-  
+  {% if template == 'index' %}
+       <title>{{ shop.name }}</title>
+   {% elsif template == '404' %}
+       <title>Page Not Found</title>
+   {% else %}
+       <title>{{ page_title | escape }} | {{ shop.name }}</title>
+   {% endif %}  
+   
   {{ content_for_header }}
 
   {% if settings.header_font == "Chewy, arial, sans-serif" %}
