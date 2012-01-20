@@ -37,7 +37,7 @@
         <ul class="thumbgrid clearfix">
           {% for product in collection.products %}
             <li{% cycle '', '', '', '', ' class="last-in-row"' %}>
-              <div class="product-photo"><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.featured_image.alt | escape }}" /></a></div>
+              <div class="product-photo"><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.title | escape }}" /></a></div>
               <div class="product-desc">
                 <h3 class="product-title"><a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 35 }}</a></h3>
                 <p class="product-price">

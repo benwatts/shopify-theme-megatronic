@@ -46,7 +46,7 @@ function remove_item(id) {
 	      <tr class="{{ item.product.handle }} item">
 	        <td class="product-photo-cell">
 	          <a href="{{ item.product.url }}">
-	            <img src="{{ item.product.featured_image | product_img_url: 'thumb' }}"  alt="{{ item.product.featured_image.alt }}" />
+	            <img src="{{ item.product.featured_image | product_img_url: 'thumb' }}"  alt="{{ item.product.title }}" />
 	          </a>
 					</td>
 	        <td class="product-title-cell"> <a href="{{item.product.url }}">{{ item.title }}</a></td>
