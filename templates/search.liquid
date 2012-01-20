@@ -26,7 +26,7 @@
         <div class="item clearfix">     
           <div class="thumbnail">
           {% if item.featured_image %}
-            <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag }}</a>
+            <a href="{{ item.url }}">{{ item.featured_image | product_img_url: 'thumb' | img_tag:item.featured_image.alt }}</a>
           {% else %}
             <a href="{{ item.url }}"><img src="{{ "generic-page-icon.jpg" | asset_url }}" alt="Generic page thumbnail" /></a>         
           {% endif %}
