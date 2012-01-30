@@ -53,7 +53,7 @@ function remove_item(id) {
 	        <td class="product-price-cell">{{ item.price | money }}</td>
 	        <td class="update-quantities-cell"> <input class="text" type="text" size="4" name="updates[{{item.variant.id}}]" id="updates_{{item.variant.id}}" value="{{ item.quantity }}" onfocus="this.select();" class="replace" /> </td>
 	        <td class="combined-price-cell">{{ item.line_price | money }}</td>
-	        <td><input class="btn-remove" type="submit" onClick="remove_item({{item.variant.id}}); return false;" value="Remove" /></td>
+	        <td><a class="btn-remove" onClick="remove_item({{item.variant.id}}); return false;">Remove</a></td>
 	      </tr>
 	      {% endfor %}
 				<tr class="bottom-summary">
