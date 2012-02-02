@@ -193,7 +193,7 @@
         <p class="poweredby">{{ powered_by_link }}</p>        
       </div>
 
-    {% if settings.show_amex || settings.show_discover || settings.show_visa || settings.show_mastercard || settings.show_maestro || settings.show_cirrus || settings.show_paypal || settings.show_google %}
+    {% if settings.show_amex or settings.show_discover or settings.show_visa or settings.show_mastercard or settings.show_maestro or settings.show_cirrus or settings.show_paypal or settings.show_google %}
     <div id="footer-payment-methods">
       <p>Payment methods we accept</p>
       {% if settings.show_amex %}       {{ 'cc-amex.png' | asset_url | img_tag }} {% endif %}

@@ -1,4 +1,4 @@
-{%if settings.sm_facebook || settings.sm_twitter || settings.sm_youtube || settings.sm_flickr %}
+{%if settings.sm_facebook or settings.sm_twitter or settings.sm_youtube or settings.sm_flickr %}
 <div id="widget-socialmedia" class="widget widget-linklist">
   <ul>
     {%if settings.sm_facebook %}<li id="sm-facebook"><a href="{{settings.sm_facebook_link}}">{{settings.sm_facebook_label}}</a></li>{% endif %}
