@@ -22,7 +22,6 @@
       <meta name="description" content="{{ shop.description | strip_html | strip_newlines | truncate: maxmeta | escape}}" />
     {% endif %}
 
-
   <meta property="og:site_name" content="{{ shop.name }}" />
   {% if template contains 'product' %}
   <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
@@ -31,12 +30,12 @@
   {% endif %}  
 
   {% if template == 'index' %}
-       <title>{{ shop.name }}</title>
-   {% elsif template == '404' %}
-       <title>Page Not Found</title>
-   {% else %}
-       <title>{{ page_title | escape }} | {{ shop.name }}</title>
-   {% endif %}  
+  <title>{{ shop.name }}</title>
+  {% elsif template == '404' %}
+  <title>Page Not Found | {{ shop.name }}</title>
+  {% else %}
+  <title>{{ page_title }} | {{ shop.name }}</title>
+  {% endif %}  
    
   {{ content_for_header }}
 
