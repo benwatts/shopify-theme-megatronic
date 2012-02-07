@@ -234,14 +234,12 @@ li{ margin: 0 0 .75em 0; }
   color: #fff;
   }
 #site-title a{ 
-  color: #fff; 
+  color: {{ settings.site_name_colour }}; 
   text-decoration: none; 
   }
 #site-title a:hover{ 
-  color: {{ settings.link_active_colour }}; 
+  color: {{ settings.site_name_colour }}; 
   }
-
-
 
 /**
  * Header > Search
