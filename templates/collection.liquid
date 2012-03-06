@@ -23,7 +23,7 @@
         {% if current_tags contains tag %}
           <li class="active">{{ tag | link_to_remove_tag: tag }}</li>
         {% else %}
-          <li>{{ tag | link_to_add_tag: tag }}</li>
+          <li>{{ tag | link_to_tag: tag }}</li>
         {% endif %}
       {% endfor %}            
     </ul>
