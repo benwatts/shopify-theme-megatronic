@@ -11,8 +11,9 @@
 		  {% unless collection.handle == 'frontpage' %}
 				<li{% cycle '', '', '', '', ' class="last-in-row"' %}>
 					<div class="product-photo">
-						<a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">
-            	{{ collection.products.first.featured_image | product_img_url: 'compact' | img_tag: collection_title }}
+						<a href="{{ collection.url }}" title="Browse our {{ collection_title }} collection">{% if collection.image %}
+            	{{ collection.image.src | collection_img_url: 'compact' | img_tag: collection_title }}{% else %}
+            	{{ collection.products.first.featured_image | product_img_url: 'compact' | img_tag: collection_title }}{% endif %}
           	</a>
           </div>
 					<div class="product-desc">            
