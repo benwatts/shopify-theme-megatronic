@@ -83,12 +83,12 @@
     <div id="top-menu" class="wrapper clearfix top-menu">
       <ul id="nav">
         {% for link in linklists.main-menu.links %}
-        <li{% if link.active %} class="current"{% endif %}>
+        <li class="top {% if link.active %}current{% endif %}">
           {% capture child_list_handle %}{{ link.title | handleize }}{% endcapture %}
           {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
           <div class="has-dropdown">
             <a class="root" href="{{ link.url }}">{{ link.title }}<span class="dd-arrow"></span></a>
-            <ul>
+            <ul class="dd">
               {% for l in linklists[child_list_handle].links %}
               <li><a  href="{{ l.url }}">{{ l.title }}</a></li>
               {% endfor %}

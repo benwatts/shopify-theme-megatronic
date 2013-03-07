@@ -346,8 +346,7 @@ li{ margin: 0 0 .75em 0; }
   text-decoration: none;
   padding: 4px 6px;
   margin: 0 10px 0 0;
-  z-index: 1;
-  -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;  
+   -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px;  
   } 
 #nav a:hover,
 #nav a.active{
@@ -362,7 +361,7 @@ li{ margin: 0 0 .75em 0; }
   -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;  
   } 
     
-#nav .has-dropdown{ position: relative; z-index: 75; }
+
 #nav .has-dropdown a{ padding-right: 20px; }
 #top-menu .has-dropdown ul{
   display: none;
@@ -414,6 +413,10 @@ li{ margin: 0 0 .75em 0; }
 .top-menu .current .dd-arrow{
   border-top-color: #fff;
   } 
+  
+    /* fix for menu overlapping dropdowns */
+  .dd li, .dd li a{z-index: 9999 !important;}
+  .top{position: relative;}
   
 #customer-controls{
   float: right;
@@ -1683,3 +1686,4 @@ li label.error-msg{
   p, h2, h3 { orphans: 3; widows: 3; }
   h2, h3{ page-break-after: avoid; }
   }
+  
