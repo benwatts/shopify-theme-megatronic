@@ -13,14 +13,9 @@
     Descriptions don't affect rankings, but can influence click-throughs.
   {% endcomment %}
   
-  {% assign maxmeta = 155 %}
-    {% if template contains 'product' %}
-       <meta name="description" content="{{ product.description | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
-    {% elsif template contains 'page' %}
-      <meta name="description" content="{{ page.content | strip_html | strip_newlines | truncate: maxmeta | escape }}" />
-    {% elsif template == 'index' and shop.description != '' %}
-      <meta name="description" content="{{ shop.description | strip_html | strip_newlines | truncate: maxmeta | escape}}" />
-    {% endif %}
+  {% if page_description %}
+  <meta name="description" content="{{ page_description }}" />
+  {% endif %}
 
   <meta property="og:site_name" content="{{ shop.name }}" />
   {% if template contains 'product' %}
