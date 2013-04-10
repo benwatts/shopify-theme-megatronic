@@ -6,7 +6,7 @@
       <h1>{{ collection.title }} {% if current_tags %} &raquo; {{current_tags}}{% endif %}</h1>
     </div>
 
-    {% if collection.all_tags.size > 0 %}
+    {% if settings.show_tags and collection.all_tags.size > 0 %}
     <ul class="product-tags clearfix">
 
       {% if current_tags %}
@@ -69,4 +69,4 @@
   {% include 'left-col-nav' %}
   {% include 'left-col-social' %}    
   {% include 'left-col-ads' %}
-</div><!-- /#col-browse --> 
+</div><!-- /#col-browse -->

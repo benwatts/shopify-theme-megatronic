@@ -96,8 +96,6 @@
   </table>
 </fieldset>
 
-
-
 <fieldset>
   <legend>Homepage</legend>
   <table>
@@ -105,11 +103,16 @@
 		<tr>
 			<td><label for="home_collection">Collection to show on homepage</label></td>
 			<td>
-			 <select class="collection" name="home_collection">
-				<option value="frontpage">Frontpage</option>
-			 </select>
+			 <select class="collection" name="home_collection" id="home_collection" />
 			</td>
-		</tr>		
+		</tr>
+
+    	<tr>
+			<td><label for="home_welcome">Page to show on homepage</label></td>
+			<td>
+			 <select class="page" name="home_welcome" id="home_welcome" />
+			</td>
+		</tr>
 		
 		<tr>
 		  <td><label for="home_show_ads">Show both ads below carousel?</label></td>
@@ -152,7 +155,6 @@
 
 <fieldset>
   <legend>Homepage Carousel</legend>
-
 
   <table>
     <tr>
@@ -228,8 +230,6 @@
 	</table>
 </fieldset>
 
-
-
 <fieldset>
   <legend>Left Column: Link Lists </legend>
 	<table>
@@ -264,7 +264,6 @@
 
  	</table>
 </fieldset>
-
 
 <fieldset>
   <legend>Left Column: Social Media</legend>
@@ -302,8 +301,6 @@
   </table>  
 </fieldset>
 
-
-
 <fieldset>
   <legend>Left Column: Ads/Promos</legend>
 
@@ -339,8 +336,6 @@
 
 </fieldset>
 
-
-
 <fieldset>
   <legend>Product Page</legend>
 
@@ -367,7 +362,17 @@
   </table>
 </fieldset>
 
-
+<fieldset>
+  <legend>Collection Page</legend>
+  <table>
+    <tr>
+      <td>
+        <label for="show_tags">Show product tags?</label> 
+        <input type="checkbox" id="show_tags" name="show_tags" value="1" checked="checked" />      
+      </td>
+    </tr>
+  </table>
+</fieldset>
 
 <fieldset>
   <legend>Footer</legend>

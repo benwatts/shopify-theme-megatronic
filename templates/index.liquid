@@ -107,18 +107,23 @@
 		
 	</div>
 	{% endif %}
+    
+  {% if settings.home_welcome and pages[settings.home_welcome].handle == settings.home_welcome and pages[settings.home_welcome].content.size > 0 %}
+  <div class="content">
+  {{ pages[settings.home_welcome].content }}
+  </div>
+  {% endif %}
 	
-	
+	{% if settings.home_collection and collections[settings.home_collection].handle == settings.home_collection and collections[settings.home_collection].products_count != 0 %}
 	
 	<!-- Product list -->
 	<div class="productlist-wrapper condensed">
 		<div class="productlist-header section-header">
-			<h2>{{ collections.[settings.home_collection].title | link_to: collections.[settings.home_collection].url }}</h2>
+			<h2>{{ collections[settings.home_collection].title | link_to: collections[settings.home_collection].url }}</h2>
 		</div>
-		
-		{% if collections.[settings.home_collection] | size > 0 %}
+
 		<ul class="thumbgrid clearfix">
-			{% for product in collections.[settings.home_collection].products %}
+			{% for product in collections[settings.home_collection].products %}
 				<li{% cycle '', '', '', '', ' class="last-in-row"' %}>
 					<div class="product-photo"><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.featured_image.alt | escape }}" /></a></div>
 					<div class="product-desc">
@@ -135,14 +140,11 @@
 				</li>
 			{% endfor %}
 		</ul>
-		{% else %}
-			<p id="empty">There are no products in this collection.</p>
-		{% endif %}
 	</div><!-- /.productlist-wrapper -->
+    
+  {% endif %}
 	
 </div><!-- /.col-content -->
-
-
 
 <div class="col-browse">
 	{% include 'left-col-nav' %}
