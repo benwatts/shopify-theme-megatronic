@@ -97,7 +97,7 @@
 		<!-- Ad on the right #2 -->
 		<div class="widget widget-image" id="widget-home-ad-2">
 			<div class="widget-content">
-				{% if settings.home_ad_left_link != "" %}
+				{% if settings.home_ad_right_link != "" %}
 					{{ 'home-right-ad.jpg' | asset_url | img_tag | link_to: settings.home_ad_right_link }}
 				{% else %}
 					{{ 'home-right-ad.jpg' | asset_url | img_tag }}
