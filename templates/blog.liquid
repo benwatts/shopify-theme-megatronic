@@ -13,7 +13,7 @@
     <div class="article clearfix">
 			
 			<div class="article-header clearfix">
-				<p class="date-posted">{{ article.created_at | date: "%B" }} {{ article.created_at | date: "%d" }}, {{ article.created_at | date: "%Y" }}</p>
+				<p class="date-posted">{{ article.published_at | date: "%B" }} {{ article.published_at | date: "%d" }}, {{ article.published_at | date: "%Y" }}</p>
        	<h2 class="title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
 			</div>
 			
