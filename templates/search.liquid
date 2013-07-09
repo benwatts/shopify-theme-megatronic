@@ -16,7 +16,7 @@
         <input type="text" id="content-search-input" name="q" class="search-large-input" value="" accesskey="4" autocomplete="off" />
         <input type="submit" id="content-search-submit" class="search-large-submit btn" value="Search" />
       </form>    
-                   
+      {% include 'featured-products' %}   
     {% else %}
             
       {% include 'pagination' with 'top' %}

@@ -1,0 +1,33 @@
+{% if settings.feature_collection_visible == true %}
+    {% if settings.feature_collection_name != "" %}
+    {% if collections[settings.feature_collection_name].products.size > 0 %}
+<div id="featured-products" class="productlist-wrapper {% if template == "search" %}condensed{% endif %} collection">
+	<div class="productlist-header section-header">
+      <h1>{{ settings.feature_collection_title }}</h1>
+    </div>
+    <!-- A collection of products -->
+    <ul class="thumbgrid clearfix">
+      {% for product in collections[settings.feature_collection_name].products | limit: 5 %}
+            <li{% cycle '', '', '', '', ' class="last-in-row"' %}>
+              <div class="product-photo"><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.featured_image.alt | escape }}" /></a></div>
+              <div class="product-desc">
+                <h3 class="product-title"><a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 35 }}</a></h3>
+                <p class="product-price">
+                {% if product.price_varies %} 
+                  from {{ product.price_min | money }}
+                {% else %}
+                  {{ product.price_min | money }}
+                  {% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}                
+                {% endif %}
+                </p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+  	</div>
+    {% endif %}
+    
+    {% else %}
+      <p class="notice">Please select a collection of items to display here on the <a href="/admin/themes/current/settings">settings page</a>, or disable this item so it no longer appears.</p>
+    {% endif %} 
+  {% endif %}

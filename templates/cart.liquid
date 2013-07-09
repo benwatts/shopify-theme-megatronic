@@ -4,7 +4,8 @@
 
 <div id="cart">
   {% if cart.item_count == 0 %} 
-  <div class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</div>	
+  <div class="empty">Your shopping cart is empty. Check out our <a href="/collections/all">catalog</a> to see what's available.</div>
+	{% include 'featured-products' %}	
   {% else %}
 
 	{% include 'shipping-calculator' %}
