@@ -1,0 +1,43 @@
+<div class="productlist-wrapper condensed">
+  {% assign number_of_related_products_to_show = 5 %}
+  
+  {% assign number_of_related_products_to_fetch = number_of_related_products_to_show | plus: 1 %}
+  
+  {% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
+  {% assign found_a_collection = false %}
+  {% for c in product.collections %}
+    {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
+      {% assign found_a_collection = true %}
+      {% assign collection = c %}
+    {% endif %}
+  {% endfor %}
+  {% endif %}
+  
+  {% if collection and collection.products_count > 1 %}
+    <h3 class="section-header">Related Products</h3>
+    <ul class="related-products thumbgrid clearfix">
+    {% assign current_product = product %}
+    {% assign current_product_found = false %}
+    {% for product in collection.products limit: number_of_related_products_to_fetch %}
+      {% if product.handle == current_product.handle %}
+         {% assign current_product_found = true %}
+      {% else %}
+        <li{% cycle '', '', '', '', ' class="last-in-row"' %}>
+        	<div class="product-photo"><a href="{{ product.url | within: collection }}"><img src="{{ product.images[0] | product_img_url: "compact" }}" alt="{{ product.featured_image.alt | escape }}" /></a></div>
+        	<div class="product-desc">
+        		<h3 class="product-title"><a href="{{ product.url | within: collection }}">{{ product.title | escape | truncate: 35 }}</a></h3>
+        		<p class="product-price">
+        		{% if product.price_varies %} 
+        			from {{ product.price_min | money }}
+        		{% else %}
+        			{{ product.price_min | money }}
+        			{% if product.compare_at_price_max > product.price %} <del>{{ product.compare_at_price_max | money }}</del>{% endif %}								
+        		{% endif %}
+        		</p>
+        	</div>
+        </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  {% endif %}
+</div>
