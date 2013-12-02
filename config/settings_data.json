@@ -83,6 +83,7 @@
     "show_cirrus": true,
     "show_paypal": true,
     "show_google": true,
+    "show_bitcoin": true,
     "newsletter-signup": true,
     "shipping_calculator": "Enabled",
     "shipping_calculator_heading": "Shipping Estimator",
