@@ -17,31 +17,22 @@
   <meta name="description" content="{{ page_description }}" />
   {% endif %}
 
-  <meta property="og:site_name" content="{{ shop.name }}" />
-  {% if template contains 'product' %}
-  <meta property="og:image" content="{{ product.featured_image | product_img_url: 'compact' }}" />
-  {% else %}
-  <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
-  {% endif %}  
+  {% include 'open-graph' %}
 
-  {% if template == 'index' %}
-  <title>{{ shop.name }}</title>
-  {% elsif template == '404' %}
-  <title>Page Not Found | {{ shop.name }}</title>
-  {% else %}
-  <title>{{ page_title }} | {{ shop.name }}</title>
-  {% endif %}  
+  <title>
+    {% if template == 'index' %}{% if page_title contains 'Welcome' %}{{ shop.name }} &ndash; Welcome{% else %}{{ page_title }}{% endif %}{% elsif template == '404' %}Page Not Found{% elsif page_title contains shop.name %}{{ page_title }}{% else %}{{ page_title }} &ndash; {{ shop.name }}{% endif %}
+  </title>
    
   {{ content_for_header }}
 
   {% if settings.header_font == "Chewy, arial, sans-serif" %}
-    <link href='http://fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Chewy' rel='stylesheet' type='text/css'>
   {% elsif settings.header_font == "Copse, arial, sans-serif" %}
-    <link href='http://fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
-    {% elsif settings.header_font == "Play, arial, sans-serif" %}
-  <link href='http://fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
-    {% elsif settings.header_font == "Arvo, arial, sans-serif" %}
-    <link href='http://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Copse' rel='stylesheet' type='text/css'>
+  {% elsif settings.header_font == "Play, arial, sans-serif" %}
+    <link href='//fonts.googleapis.com/css?family=Play' rel='stylesheet' type='text/css'>
+  {% elsif settings.header_font == "Arvo, arial, sans-serif" %}
+    <link href='//fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
   {% endif %} 
 
   {{ 'style.css' | asset_url | stylesheet_tag }}  
@@ -202,9 +193,7 @@
       {% if settings.show_bitcoin %}    {{ 'cc-bitcoin.png' | asset_url | img_tag }} {% endif %}     
     </div>
     {% endif %}
-
-
-    
+   
     </div><!-- /#footer -->
   </div><!-- /#footer-wrapper -->
   
