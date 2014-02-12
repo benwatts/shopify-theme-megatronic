@@ -18,6 +18,7 @@
   {% endif %}
 
   {% include 'open-graph' %}
+  {% include 'twitter-cards' %}
 
   <title>
     {% if template == 'index' %}{% if page_title contains 'Welcome' %}{{ shop.name }} &ndash; Welcome{% else %}{{ page_title }}{% endif %}{% elsif template == '404' %}Page Not Found{% elsif page_title contains shop.name %}{{ page_title }}{% else %}{{ page_title }} &ndash; {{ shop.name }}{% endif %}
