@@ -8,20 +8,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <link rel="canonical" href="{{ canonical_url }}" /> 
   
-  {% comment %} 
-    Provide a *slightly* better product description for search engines. 
-    Descriptions don't affect rankings, but can influence click-throughs.
-  {% endcomment %}
-  
   {% if page_description %}
-  <meta name="description" content="{{ page_description }}" />
+  <meta name="description" content="{{ page_description | escape }}" />
   {% endif %}
 
   {% include 'open-graph' %}
   {% include 'twitter-cards' %}
 
   <title>
-    {% if template == 'index' %}{% if page_title contains 'Welcome' %}{{ shop.name }} &ndash; Welcome{% else %}{{ page_title }}{% endif %}{% elsif template == '404' %}Page Not Found{% elsif page_title contains shop.name %}{{ page_title }}{% else %}{{ page_title }} &ndash; {{ shop.name }}{% endif %}
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
   </title>
    
   {{ content_for_header }}
@@ -44,6 +39,8 @@
     {{ "shopify_common.js" | shopify_asset_url | script_tag }}
     {{ "customer_area.js"  | shopify_asset_url | script_tag }}
   {% endif %}
+  
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js' | script_tag }}
   
 </head>
 
@@ -123,9 +120,7 @@
         </li>
       </ul><!-- #customer-controls -->
     </div><!-- /#top-menu --> 
-  
-  
-  
+    
     <!-- Main Content -->
     <div id="main" class="wrapper clearfix">
       <div class="content-wrapper clearfix">
@@ -140,8 +135,6 @@
     </div><!-- /#main -->
   
   </div><!-- /#main-wrapper -->
-
-
 
   <!-- Footer -->
   <div id="footer-wrapper">
@@ -185,36 +178,26 @@
         <p class="poweredby">{{ powered_by_link }}</p>        
       </div>
 
-    {% if settings.show_amex or settings.show_discover or settings.show_visa or settings.show_mastercard or settings.show_maestro or settings.show_cirrus or settings.show_paypal or settings.show_google or settings.show_bitcoin %}
-    <div id="footer-payment-methods">
-      <p>Payment methods we accept</p>
-      {% if settings.show_amex %}       {{ 'cc-amex.png' | asset_url | img_tag }} {% endif %}
-      {% if settings.show_discover %}   {{ 'cc-discover.png' | asset_url | img_tag }} {% endif %}
-      {% if settings.show_visa %}       {{ 'cc-visa.png' | asset_url | img_tag }} {% endif %}     
-      {% if settings.show_mastercard %} {{ 'cc-mastercard.png' | asset_url | img_tag }} {% endif %}     
-      {% if settings.show_maestro %}    {{ 'cc-maestro.png' | asset_url | img_tag }} {% endif %}
-      {% if settings.show_cirrus %}     {{ 'cc-cirrus.png' | asset_url | img_tag }} {% endif %} 
-      {% if settings.show_paypal %}     {{ 'cc-paypal.png' | asset_url | img_tag }} {% endif %}
-      {% if settings.show_google %}     {{ 'cc-google.png' | asset_url | img_tag }} {% endif %}
-      {% if settings.show_bitcoin %}    {{ 'cc-bitcoin.png' | asset_url | img_tag }} {% endif %}     
-    </div>
-    {% endif %}
+      {% unless shop.enabled_payment_types == empty %}
+      <div id="footer-payment-methods">
+        <p>Payment methods we accept</p>
+        {% for type in shop.enabled_payment_types %}
+        <img width="45" src="{{ type | payment_type_img_url }}" />
+        {% endfor %}
+      </div>
+      {% endunless %}
    
     </div><!-- /#footer -->
-  </div><!-- /#footer-wrapper -->
-  
-  {% unless template == 'cart' %}  
-
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+  </div><!-- /#footer-wrapper --> 
   
   {{ 'jquery.hoverintent.js' | asset_url | script_tag }}    
   {{ 'jquery.tools.min.js' | asset_url | script_tag }}  
   {{ 'facebox.js' | asset_url | script_tag }}
   
-  {%if product %}
     <script>
 
-    {% if product.available %}
+    {% if template contains 'product' and product.available %}
+    
     var selectCallback = function(variant, selector) {
       if (variant && variant.available == true) {
         // selected a valid variant
@@ -235,21 +218,21 @@
     // initialize multi selector for product
     $(function() {
       new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+      
       {% assign found_one_in_stock = false %}
-
       {% for variant in product.variants %}
         {% if variant.available and found_one_in_stock == false %}
           {% assign found_one_in_stock = true %}
           {% for option in product.options %}
-          $('.single-option-selector:eq(' + {{ forloop.index0 }} + ')').val({{ variant.options[forloop.index0] | json }}).trigger('change');
+          $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
           {% endfor %}
         {% endif %}
       {% endfor %}  
       
     });
+    
     {% endif %}
     
-
     $('.lightbox').facebox({
       loadingImage: '{{ "loading.gif" | asset_url }}', 
       closeImage:  '{{ "closelabel.png" | asset_url }}'
@@ -275,15 +258,9 @@
     </script>
 
     <!-- tweet btn -->
-    <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+    <script src="//platform.twitter.com/widgets.js"></script>
 
-  {% endif %}
-        
-
-
-  {{ 'theme.js' | asset_url | script_tag }}
-  
-  {% endunless %}
+    {{ 'theme.js' | asset_url | script_tag }}
     
 </body>
 </html>
