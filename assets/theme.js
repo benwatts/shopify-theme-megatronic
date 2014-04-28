@@ -87,8 +87,10 @@ if( $('.template-product:first').length > 0 ){
     $('#add-to-cart-msg').hide().addClass('success').html('Item added to cart! <a href="/cart" title="view cart">View Cart</a>.').fadeIn();   
   }
   
-  function addToCartFail(jqXHR, textStatus, errorThrown){
-    $('#add-to-cart-msg').hide().addClass('error').html(jqXHR.description).fadeIn();
+  function addToCartFail(XMLHttpRequest){
+    var response = eval('(' + XMLHttpRequest.responseText + ')');
+    $('#add-to-cart-msg').hide().addClass('error').html(response.description.replace('All 1 ','All ')).fadeIn();
+    return false;
   }
   
   function updateCartDesc(data){
