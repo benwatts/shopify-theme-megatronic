@@ -1,7 +1,6 @@
 <fieldset>
-  <legend>General</legend>
+  <legend>Colors</legend>
   <table>	
-
     <tr>
       <td><label for="link_colour">Link Colour</label></td>
       <td><input id="link_colour" name="link_colour" class="color" value="#2e8fc1" /></td>
@@ -17,53 +16,14 @@
       <td><input id="link_active_colour" name="link_active_colour" class="color" value="#fee086" /></td>
     </tr>
 
-    <tr>
-      <td><label for="header_font">Site Title Font</label><br /><small>(site title)</small></td>
-      <td>
-				<select class="font" name="header_font" id="header_font">
-					<option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
-					<option value="Arvo, arial, sans-serif">Arvo</option>
-					<option value="Chewy, arial, sans-serif">Chewy</option>
-					<option value="Copse, arial, sans-serif">Copse</option>
-					<option value="Play, arial, sans-serif">Play</option>
-		  	</select>
-			</td>
-    </tr>
-
-    <tr>
-      <td><label for="general_font">Body font</label><br /><small>(used everywhere else)</small></td>
-      <td>
-				<select class="font" name="general_font" id="general_font">
-					<option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
-		  	</select>
-			</td>
-    </tr>
-    <tr>
+       <tr>
       <td><label for="h_colour">Headings Text Color h1, h2, h3, h4, h5, h6</label></td>
       <td><input id="h_colour" name="h_colour" class="color" value="#365463" /></td>
     </tr>
-	
   </table>
-</fieldset>
-
-<fieldset>
-	<legend>Header</legend>
   <table>
-    <tr>
-      <td><label for="use_logo_image">Use a custom site logo?</label></td>
-      <td><input type="checkbox" id="use_logo_image" name="use_logo_image" /></td>
-    </tr>
-		<tr>
-			<td><label for="logo">Custom logo:</label></td>
-			<td><input type="file" id="logo" name="logo.png" /><br /><small>Recommended dimensions: 300 x 75px</small></td>
-		</tr>
-		
-    <tr>
-      <td><label for="site_name_colour">Site name colour</label></td>
-      <td><input id="site_name_colour" name="site_name_colour" class="color" value="#ffffff" /></td>
-    </tr>
-		
-    <tr>
+  <h3>Header</h3>
+  	<tr>
       <td><label for="header_colour">Header Background</label></td>
       <td><input id="header_colour" name="header_colour" class="color" value="#365463" /></td>
     </tr>		
@@ -72,8 +32,10 @@
       <td><label for="topmenu_colour">Top Menu Background</label></td>
       <td><input id="topmenu_colour" name="topmenu_colour" class="color" value="#1B3440" /></td>
     </tr>		
-
-    <tr>
+  </table>
+  <table>
+  <h3>Navigation</h3>
+  	<tr>
       <td><label for="dd_link_colour">Dropdown Link Colour</label></td>
       <td><input id="dd_link_colour" name="dd_link_colour" class="color" value="#365463" /></td>
     </tr>
@@ -92,71 +54,173 @@
       <td><label for="dd_link_divider_colour">Dropdown Link Divider Colour</label></td>
       <td><input id="dd_link_divider_colour" name="dd_link_divider_colour" class="color" value="#f8cc7b" /></td>
     </tr>
-		
   </table>
+</fieldset>
+
+<fieldset>
+	<legend>Typography</legend>
+	<table>
+		<tr>
+			<td><label for="header_font">Site Title Font</label><br /><small>(site title)</small></td>
+			<td>
+				<select class="font" name="header_font" id="header_font">
+					<option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
+					<option value="Arvo, arial, sans-serif">Arvo</option>
+					<option value="Chewy, arial, sans-serif">Chewy</option>
+					<option value="Copse, arial, sans-serif">Copse</option>
+					<option value="Play, arial, sans-serif">Play</option>
+				</select>
+		  	</td>
+		</tr>
+
+    <tr>
+      		<td><label for="general_font">Body font</label><br /><small>(used everywhere else)</small></td>
+      		<td>
+				<select class="font" name="general_font" id="general_font">
+					<option value="Helvetica, Arial, sans-serif" selected="selected">Helvetica/Arial</option>
+				</select>
+		  	</td>
+    </tr>
+	</table>
+</fieldset>
+
+<fieldset>
+  <legend>Header</legend>
+  <table>
+  <h3>Logo</h3>
+   <tr>
+      <td><label for="use_logo_image">Use a custom site logo?</label></td>
+      <td><input type="checkbox" id="use_logo_image" name="use_logo_image" /></td>
+    </tr>
+	<tr>
+		<td><label for="logo">Custom logo:</label></td>
+		<td><input type="file" id="logo" name="logo.png" /><br /><small>Recommended dimensions: 300 x 75px</small></td>
+	</tr>
+		
+    <tr>
+      <td><label for="site_name_colour">Logo Color <small>(if text logo is used)</small></label></td>
+      <td><input id="site_name_colour" name="site_name_colour" class="color" value="#ffffff" /></td>
+    </tr>
+  </table>
+</fieldset>
+
+
+
+<fieldset>
+  <legend>Footer</legend>
+  <table>		
+	<tr class="even">
+		<td><label for="footer_txt">Footer text</label></td>
+		<td><textarea id="footer_txt" name="footer_txt" cols="60" rows="5">Customize this text in Theme Settings</textarea></td>
+	</tr>		
+	<tr class="odd">
+		<td><label for="footer_linklist_1">Footer link list #1</label></td>
+		<td><select class="linklist" name="footer_linklist_1"><option value="footer">Footer</option></select></td>
+	</tr>
+	<tr class="even">
+		<td><label for="footer_linklist_2">Footer link list #2</label></td>
+		<td><select class="linklist" name="footer_linklist_2"><option value="footer">Footer</option></select></td>
+	</tr>
+	<tr class="odd">
+		<td><label for="footer_linklist_2">Footer link list #3</label></td>
+		<td><select class="linklist" name="footer_linklist_3"><option value="footer">Footer</option></select></td>
+	</tr>			
+  </table>	
+
+<br />
+
+  <table>
+  <h3>Payment methods</h3>
+    <tr>
+      <td>
+        <input type="checkbox" id="show_amex" name="show_amex" value="1" checked="checked" />
+        <label for="show_amex">American Express</label>
+      </td>
+      <td>
+        <input type="checkbox" id="show_discover" name="show_discover" value="1" checked="checked" />
+        <label for="show_discover">Discover</label>
+      </td>
+      <td>
+        <input type="checkbox" id="show_visa" name="show_visa" value="1" checked="checked" />
+        <label for="show_visa">Visa</label>
+      </td>
+    </tr>     
+    <tr>
+      <td>
+        <input type="checkbox" id="show_mastercard" name="show_mastercard" value="1" checked="checked" />
+        <label for="show_mastercard">Mastercard</label>
+      </td>
+      <td>
+        <input type="checkbox" id="show_maestro" name="show_maestro" value="1" checked="checked" />
+        <label for="show_maestro">Maestro</label>
+      </td>
+      <td>
+        <input type="checkbox" id="show_cirrus" name="show_cirrus" value="1" checked="checked" />
+        <label for="show_cirrus">Cirrus</label>
+      </td>
+    </tr>     
+    <tr>
+      <td>
+        <input type="checkbox" id="show_paypal" name="show_paypal" value="1" checked="checked" />
+        <label for="show_paypal">Paypal</label>        
+      </td>
+      <td colspan="1">
+        <input type="checkbox" id="show_google" name="show_google" value="1" checked="checked" />
+        <label for="show_google">Google Checkout</label>        
+      </td>
+      <td colspan="1">
+        <input type="checkbox" id="show_bitcoin" name="show_bitcoin" value="1" checked="checked" />
+        <label for="show_bitcoin">Bitcoin</label>        
+      </td>
+    </tr>
+  </table>
+  
+  <br />
+  
+  <table>
+  <h3>Newsletter</h3> 
+    <tr class="even">
+      <td>
+        <label for="newsletter-signup">Show the newsletter signup form?</label>
+      </td>
+      <td>
+        <input type="checkbox" id="newsletter-signup" name="newsletter-signup" value="1" />
+      </td>
+    </tr>
+    <tr class="odd">
+      <td colspan="2">
+        <p>
+          The newsletter signup form will create a customer record with name 'Newsletter, Subscriber' and tags 'prospect' and 'newsletter'.
+          When a customer signs up, you will not receve an email notification. 
+          From the time the form is submitted, it may take up to 15 minutes for the new customer record to show up on your <a href="/admin/customers#f%5B%5D=tag%3A'newsletter'">Customers page</a>.
+        </p>
+      </td>
+    </tr>
+  </table>  
 </fieldset>
 
 <fieldset>
   <legend>Homepage</legend>
   <table>
-	
-		<tr>
-			<td><label for="home_collection">Collection to show on homepage</label></td>
+	<tr>
+		<td><label for="home_collection">Collection to show on homepage</label></td>
 			<td>
-			 <select class="collection" name="home_collection" id="home_collection" />
+			  	<select class="collection" name="home_collection" id="home_collection" />
 			</td>
-		</tr>
-
+	</tr>
+	
     	<tr>
 			<td><label for="home_welcome">Page to show on homepage</label></td>
-			<td>
-			 <select class="page" name="home_welcome" id="home_welcome" />
-			</td>
-		</tr>
-		
-		<tr>
-		  <td><label for="home_show_ads">Show both ads below carousel?</label></td>
-		  <td><input type="checkbox" id="home_show_ads" name="home_show_ads" value="1" checked="checked" /></td>
-		</tr>			
+				<td>
+					<select class="page" name="home_welcome" id="home_welcome" />
+				</td>
+	</tr>		
   </table>
-
+  
   <br />
-  <hr />
-  <br />
-
-  <p>Recommended dimensions of images below carousel: <strong>345px x 145px</strong></p>
-  <p>Leave the "Link to" field empty for no link.</p>  
-
-  <table class="standard-table">
-    <thead>
-    <tr>
-      <td> </td>
-      <td>Image</td>
-      <td>Link to</td>
-    </tr>
-    </thead>
-    <tbody>
-		<tr class="odd">
-			<td><label for="home_ad_left">Image below carousel (left)</label></td>
-			<td><input type="file" id="home_ad_left" name="home-left-ad.jpg" data-max-width="345" /></td>
-			<td><input type="text" name="home_ad_left_link" value="" /></td>
-		</tr>		
-				
-		<tr class="even">
-			<td><label for="home_ad_right">Image below carousel (right)</label></td>
-			<td><input type="file" id="home_ad_right" name="home-right-ad.jpg" data-max-width="345" /></td>
-			<td><input type="text" name="home_ad_right_link" value="" /></td>
-		</tr>			
-		</tbody>
-	</table>
-</fieldset>
-
-
-
-<fieldset>
-  <legend>Homepage Carousel</legend>
-
+  
   <table>
+   <h3>Carousel</h3>
     <tr>
       <td><label for="show_carousel">Show carousel?</label></td>
       <td><input type="checkbox" id="show_carousel" name="show_carousel" value="1" checked="checked" /></td>
@@ -172,148 +236,168 @@
   </table>    
 
   <br />
-  <hr />
-  <br />
 
-  <p>Recommended dimensions of all carousel images: <strong>710px x 255px</strong></p>
-  <p>Leave the "Link to" field empty for no link.</p>
-
-  <table class="standard-table">
+  <table>
+  <h3>Carousel Images <small>Recommended dimensions of all carousel images: <strong>710px x 255px</strong></small></h3>
     <tr>
       <td> </td>
       <td>Show?</td>
       <td>Image</td>
       <td>Link to</td>
     </tr>
-		
 		<tr class="odd"><!-- CAROUSEL ITEM 1 -->
-      <td><label for="show_carousel_item_4">Slide #1</label></td> 
-			<td><input type="checkbox" id="show_carousel_item_1" name="show_carousel_item_1" value="1" checked="checked" /></td>
-			<td><input type="file" id="carousel_item_1_image" name="carousel-item-1.jpg" data-max-width="710" /></td>
-			<td><input type="text" id="carousel_item_1_link" name="carousel_item_1_link" /></td>
+	      <td><label for="show_carousel_item_4">Slide #1</label></td> 
+				<td><input type="checkbox" id="show_carousel_item_1" name="show_carousel_item_1" value="1" checked="checked" /></td>
+				<td><input type="file" id="carousel_item_1_image" name="carousel-item-1.jpg" data-max-width="710" /></td>
+				<td><input type="text" id="carousel_item_1_link" name="carousel_item_1_link" /></td>
 		</tr>
-		
+			
 		<tr class="even"><!-- CAROUSEL ITEM 2 -->
-      <td><label for="show_carousel_item_4">Slide #2</label></td>    
-			<td><input type="checkbox" id="show_carousel_item_2" name="show_carousel_item_2" value="1" checked="checked" /></td>
-			<td><input type="file" id="carousel_item_2_image" name="carousel-item-2.jpg" data-max-width="710" /></td>
-			<td><input type="text" id="carousel_item_2_link" name="carousel_item_2_link" /></td>
+	      <td><label for="show_carousel_item_4">Slide #2</label></td>    
+				<td><input type="checkbox" id="show_carousel_item_2" name="show_carousel_item_2" value="1" checked="checked" /></td>
+				<td><input type="file" id="carousel_item_2_image" name="carousel-item-2.jpg" data-max-width="710" /></td>
+				<td><input type="text" id="carousel_item_2_link" name="carousel_item_2_link" /></td>
 		</tr>		
-		
+			
 		<tr class="odd"><!-- CAROUSEL ITEM 3 -->
-      <td><label for="show_carousel_item_4">Slide #3</label></td>    
-			<td><input type="checkbox" id="show_carousel_item_3" name="show_carousel_item_3" value="1" checked="checked" /></td>
-			<td><input type="file" id="carousel_item_3_image" name="carousel-item-3.jpg" data-max-width="710" /></td>
-			<td><input type="text" id="carousel_item_3_link" name="carousel_item_3_link" /></td>
+	      <td><label for="show_carousel_item_4">Slide #3</label></td>    
+				<td><input type="checkbox" id="show_carousel_item_3" name="show_carousel_item_3" value="1" checked="checked" /></td>
+				<td><input type="file" id="carousel_item_3_image" name="carousel-item-3.jpg" data-max-width="710" /></td>
+				<td><input type="text" id="carousel_item_3_link" name="carousel_item_3_link" /></td>
 		</tr>	
-				
+					
 		<tr class="even"><!-- CAROUSEL ITEM 4 -->
-			<td><label for="show_carousel_item_4">Slide #4</label></td>
-			<td><input type="checkbox" id="show_carousel_item_4" name="show_carousel_item_4" value="0" /></td>
-			<td><input type="file" id="carousel_item_4_image" name="carousel-item-4.jpg" data-max-width="710" /></td>
-			<td><input type="text" id="carousel_item_4_link" name="carousel_item_4_link" /></td>
+				<td><label for="show_carousel_item_4">Slide #4</label></td>
+				<td><input type="checkbox" id="show_carousel_item_4" name="show_carousel_item_4" value="0" /></td>
+				<td><input type="file" id="carousel_item_4_image" name="carousel-item-4.jpg" data-max-width="710" /></td>
+				<td><input type="text" id="carousel_item_4_link" name="carousel_item_4_link" /></td>
 		</tr>		
-				
+					
 		<tr class="odd"><!-- CAROUSEL ITEM 5 -->
-      <td><label for="show_carousel_item_4">Slide #5</label></td>    
-			<td><input type="checkbox" id="show_carousel_item_5" name="show_carousel_item_5" value="0" /></td>
-			<td><input type="file" id="carousel_item_5_image" name="carousel-item-5.jpg" data-max-width="710" /></td>
-			<td><input type="text" id="carousel_item_5_link" name="carousel_item_5_link" /></td>
+	      <td><label for="show_carousel_item_4">Slide #5</label></td>    
+				<td><input type="checkbox" id="show_carousel_item_5" name="show_carousel_item_5" value="0" /></td>
+				<td><input type="file" id="carousel_item_5_image" name="carousel-item-5.jpg" data-max-width="710" /></td>
+				<td><input type="text" id="carousel_item_5_link" name="carousel_item_5_link" /></td>
 		</tr>		
-				
+					
 		<tr class="even"><!-- CAROUSEL ITEM 6 -->
-      <td><label for="show_carousel_item_4">Slide #6</label></td>    
-			<td><input type="checkbox" id="show_carousel_item_6" name="show_carousel_item_6" value="0" /></td>
-			<td><input type="file" id="carousel_item_6_image" name="carousel-item-6.jpg" data-max-width="710" /></td>
-			<td><input type="text" id="carousel_item_6_link" name="carousel_item_6_link" /></td>
+	      <td><label for="show_carousel_item_4">Slide #6</label></td>    
+				<td><input type="checkbox" id="show_carousel_item_6" name="show_carousel_item_6" value="0" /></td>
+				<td><input type="file" id="carousel_item_6_image" name="carousel-item-6.jpg" data-max-width="710" /></td>
+				<td><input type="text" id="carousel_item_6_link" name="carousel_item_6_link" /></td>
 		</tr>
-	</table>
-</fieldset>
-
-<fieldset>
-  <legend>Left Column: Link Lists </legend>
-	<table>
-
-		<tr>
-			<th><label for="show_leftnav_allcollections">Show all collections?</label></th>
-			<td><input type="checkbox" id="show_leftnav_allcollections" name="show_leftnav_allcollections" value="1" checked="checked" /></td>
-			<th><label for="allcollections_title">Title</label></th>			
-			<td><input type="text" id="allcollections_title" name="allcollections_title" value="Product Categories" /></td>
-		</tr>
-		
-		<tr>
-			<th><label for="show_leftnav_linklist1">Show link list #1?</label></th>
-			<td><input type="checkbox" id="show_leftnav_linklist1" name="show_leftnav_linklist1" value="0" /></td>
-			<th><label for="leftnav_linklist1">Use list: </label></th>
-			<td><select class="linklist" id="leftnav_linklist1" name="leftnav_linklist1" /></td>
-		</tr>
-		
-		<tr>
-			<th><label for="show_leftnav_linklist2">Show link list #2?</label></th>
-			<td><input type="checkbox" id="show_leftnav_linklist2" name="show_leftnav_linklist2" value="0" /></td>
-			<th><label for="leftnav_linklist2">Use list: </label></th>
-			<td><select class="linklist" id="leftnav_linklist2" name="leftnav_linklist2" /></td>
-		</tr>
-
-		<tr>
-			<th><label for="show_leftnav_linklist3">Show link list #3?</label></th>
-			<td><input type="checkbox" id="show_leftnav_linklist3" name="show_leftnav_linklist3" value="0" /></td>
-			<th><label for="leftnav_linklist3">Use list: </label></th>
-			<td><select class="linklist" id="leftnav_linklist3" name="leftnav_linklist3" /></td>
-		</tr>
-
- 	</table>
-</fieldset>
-
-<fieldset>
-  <legend>Left Column: Social Media</legend>
-  <table class="standard-table">
+  </table>
+  <br />
+  <h3>Images below Carousel <small>Recommended dimensions of images below carousel: <strong>345px x 145px</strong></small></h3>
+  <table>	
+  	<tr>
+		  <td><label for="home_show_ads">Show both ads below carousel?</label></td>
+		  <td><input type="checkbox" id="home_show_ads" name="home_show_ads" value="1" checked="checked" /></td>
+	</tr>	
+  </table>
+  <br />
+  <table>
     <tr>
-      <td></td>
-      <td>Show?</td>
-      <td>Label</td>
+      <td> </td>
+      <td>Image</td>
       <td>Link to</td>
     </tr>
-    <tr class="even">
-      <td><strong>Facebook</strong></td>
-      <td><input type="checkbox" id="sm_facebook" name="sm_facebook" value="1" checked="checked" /></td>
-      <td><input type="text" id="sm_facebook_label" name="sm_facebook_label" value="Become a fan on Facebook" /></td>
-      <td><input type="text" id="sm_facebook_link" name="sm_facebook_link" value="http://www.facebook.com" /></td>
-    </tr>
-    <tr class="odd">
-      <td><strong>Twitter</strong></td>
-      <td><input type="checkbox" id="sm_twitter" name="sm_twitter" value="1" checked="checked" /></td>
-      <td><input type="text" id="sm_twitter_label" name="sm_twitter_label" value="Follow us on Twitter" /></td>
-      <td><input type="text" id="sm_twitter_link" name="sm_twitter_link" value="http://www.twitter.com" /></td>
-    </tr>
-    <tr class="even">
-      <td><strong>YouTube</strong></td>
-      <td><input type="checkbox" id="sm_youtube" name="sm_youtube" value="1" checked="checked" /></td>
-      <td><input type="text" id="sm_youtube_label" name="sm_youtube_label" value="Watch our videos on YouTube" /></td>
-      <td><input type="text" id="sm_youtube_link" name="sm_youtube_link" value="http://www.youtube.com" /></td>
-    </tr>
-    <tr class="odd">
-      <td><strong>Flickr</strong></td>
-      <td><input type="checkbox" id="sm_flickr" name="sm_flickr" value="1" checked="checked" /></td>
-      <td><input type="text" id="sm_flickr_label" name="sm_flickr_label" value="View our photo stream on Flickr" /></td>
-      <td><input type="text" id="sm_flickr_link" name="sm_flickr_link" value="http://www.flickr.com" /></td>
-    </tr>
-    <tr class="even">
-      <td><strong>Pinterest</strong></td>
-      <td><input type="checkbox" id="sm_pinterest" name="sm_pinterest" value="1" checked="checked" /></td>
-      <td><input type="text" id="sm_pinterest_label" name="sm_pinterest_label" value="Follow us on Pinterest" /></td>
-      <td><input type="text" id="sm_pinterest_link" name="sm_pinterest_link" value="http://pinterest.com" /></td>
-    </tr>
-  </table>  
+    
+    <tbody>
+		<tr class="odd">
+			<td><label for="home_ad_left">Image below carousel (left)</label></td>
+			<td><input type="file" id="home_ad_left" name="home-left-ad.jpg" data-max-width="345" /></td>
+			<td><input type="text" name="home_ad_left_link" value="" /></td>
+		</tr>		
+				
+		<tr class="even">
+			<td><label for="home_ad_right">Image below carousel (right)</label></td>
+			<td><input type="file" id="home_ad_right" name="home-right-ad.jpg" data-max-width="345" /></td>
+			<td><input type="text" name="home_ad_right_link" value="" /></td>
+		</tr>			
+	</tbody>
+  </table>
 </fieldset>
 
 <fieldset>
-  <legend>Left Column: Ads/Promos</legend>
+  <legend>Sidebar</legend>
+  <table>
+  <h3>Link Lists</h3>
+	<tr>
+		<th><label for="show_leftnav_allcollections">Show all collections?</label></th>
+		<td><input type="checkbox" id="show_leftnav_allcollections" name="show_leftnav_allcollections" value="1" checked="checked" /></td>
+		<th><label for="allcollections_title">Title</label></th>			
+		<td><input type="text" id="allcollections_title" name="allcollections_title" value="Product Categories" /></td>
+	</tr>
+		
+	<tr>
+		<th><label for="show_leftnav_linklist1">Show link list #1?</label></th>
+		<td><input type="checkbox" id="show_leftnav_linklist1" name="show_leftnav_linklist1" value="0" /></td>
+		<th><label for="leftnav_linklist1">Use list: </label></th>
+		<td><select class="linklist" id="leftnav_linklist1" name="leftnav_linklist1" /></td>
+	</tr>
+		
+	<tr>
+		<th><label for="show_leftnav_linklist2">Show link list #2?</label></th>
+		<td><input type="checkbox" id="show_leftnav_linklist2" name="show_leftnav_linklist2" value="0" /></td>
+		<th><label for="leftnav_linklist2">Use list: </label></th>
+		<td><select class="linklist" id="leftnav_linklist2" name="leftnav_linklist2" /></td>
+	</tr>
 
-  <p>Recommend width of all images below is <strong>230px</strong>.</p>
-  <p>Leave the "Link to" field empty for no link.</p>
-
-  <table class="standard-table">
+	<tr>
+		<th><label for="show_leftnav_linklist3">Show link list #3?</label></th>
+		<td><input type="checkbox" id="show_leftnav_linklist3" name="show_leftnav_linklist3" value="0" /></td>
+		<th><label for="leftnav_linklist3">Use list: </label></th>
+		<td><select class="linklist" id="leftnav_linklist3" name="leftnav_linklist3" /></td>
+	</tr>
+  </table>
+  
+  <br />
+  
+  <table>
+  <h3>Social Media</h3>
+    <tr>
+    	<td></td>
+		<td>Show?</td>
+		<td>Label</td>
+		<td>Link to</td>
+    </tr>
+    <tr class="even">
+      	<td>Facebook</td>
+	  	<td><input type="checkbox" id="sm_facebook" name="sm_facebook" value="1" checked="checked" /></td>
+	  	<td><input type="text" id="sm_facebook_label" name="sm_facebook_label" value="Become a fan on Facebook" /></td>
+	  	<td><input type="text" id="sm_facebook_link" name="sm_facebook_link" value="http://www.facebook.com" /></td>
+    </tr>
+    <tr class="odd">
+      	<td><strong>Twitter</strong></td>
+	  	<td><input type="checkbox" id="sm_twitter" name="sm_twitter" value="1" checked="checked" /></td>
+	  	<td><input type="text" id="sm_twitter_label" name="sm_twitter_label" value="Follow us on Twitter" /></td>
+	  	<td><input type="text" id="sm_twitter_link" name="sm_twitter_link" value="http://www.twitter.com" /></td>
+    </tr>
+    <tr class="even">
+      	<td><strong>YouTube</strong></td>
+	  	<td><input type="checkbox" id="sm_youtube" name="sm_youtube" value="1" checked="checked" /></td>
+	  	<td><input type="text" id="sm_youtube_label" name="sm_youtube_label" value="Watch our videos on YouTube" /></td>
+	  	<td><input type="text" id="sm_youtube_link" name="sm_youtube_link" value="http://www.youtube.com" /></td>
+    </tr>
+    <tr class="odd">
+      	<td><strong>Flickr</strong></td>
+	  	<td><input type="checkbox" id="sm_flickr" name="sm_flickr" value="1" checked="checked" /></td>
+	  	<td><input type="text" id="sm_flickr_label" name="sm_flickr_label" value="View our photo stream on Flickr" /></td>
+	  	<td><input type="text" id="sm_flickr_link" name="sm_flickr_link" value="http://www.flickr.com" /></td>
+    </tr>
+    <tr class="even">
+      	<td><strong>Pinterest</strong></td>
+	  	<td><input type="checkbox" id="sm_pinterest" name="sm_pinterest" value="1" checked="checked" /></td>
+	  	<td><input type="text" id="sm_pinterest_label" name="sm_pinterest_label" value="Follow us on Pinterest" /></td>
+	  	<td><input type="text" id="sm_pinterest_link" name="sm_pinterest_link" value="http://pinterest.com" /></td>
+    </tr>
+  </table>
+  
+  <br />  
+  
+  <table>
+  <h3>Ads/Promos <small>Recommend width of all images below is <strong>230px</strong></small></h3>	
     <tr>
       <td> </td>
       <td>Show</td>
@@ -321,29 +405,57 @@
       <td>Link to</td>
     </tr>
 		<tr class="odd">
-      <td><label for="show_leftcol_ad_1">Ad #1</label></td>
+		<td><label for="show_leftcol_ad_1">Ad #1</label></td>
 			<td><input type="checkbox" id="show_leftcol_ad_1" name="show_leftcol_ad_1" value="1" checked="checked" /></td>
 			<td><input type="file" id="leftcol_ad_1_image" name="leftcol-ad-1.jpg" data-max-width="230" /></td>
 			<td><input type="text" id="leftcol_ad_1_link" name="leftcol_ad_1_link" /></td>
 		</tr>
 		<tr class="even">
-      <td>Ad #2</td>
+		<td>Ad #2</td>
 			<td><input type="checkbox" id="show_leftcol_ad_2" name="show_leftcol_ad_2" value="1" checked="checked" /></td>
 			<td><input type="file" id="leftcol_ad_2_image" name="leftcol-ad-2.jpg" data-max-width="230" /></td>
 			<td><input type="text" id="leftcol_ad_2_link" name="leftcol_ad_2_link" /></td>
 		</tr>
 		<tr class="odd">
-      <td>Ad #3</td>
+		<td>Ad #3</td>
 			<td><input type="checkbox" id="show_leftcol_ad_3" name="show_leftcol_ad_3" value="1" checked="checked" /></td>
 			<td><input type="file" id="leftcol_ad_3_image" name="leftcol-ad-3.jpg" data-max-width="230" /></td>
 			<td><input type="text" id="leftcol_ad_3_link" name="leftcol_ad_3_link" /></td>
 		</tr>
-	</table>
-
+  </table>
 </fieldset>
 
 <fieldset>
-  <legend>Product Page</legend>
+  <legend>Collection Pages</legend>
+  <table>
+  <h3>Tags</h3>
+    <tr>
+      <td>
+        <label for="show_tags">Show product tags?</label> 
+        <input type="checkbox" id="show_tags" name="show_tags" value="1" checked="checked" />      
+      </td>
+    </tr>
+  </table>
+  <table>
+    <h3>Search and Cart Page Collection</h3>
+    <tr>
+    	<td><label for="feature_collection_visible">Show collection on search and cart page?</label><small>Will only be displyed on empty cart and search pages.</small></td>
+		<td><input type="checkbox" id="feature_collection_visible" name="feature_collection_visible" /></td>
+    </tr>
+    <tr>
+    	<td><label for="feature_collection_title">Collection title</label></td>
+		<td>
+        <input type="text" name="feature_collection_title" id="feature_collection_title" size="30" value="Featured Products" />
+		</td>
+    </tr>
+	<tr>    
+    	<td><label for="feature_collection_name">Collection to show</label></td>
+		<td><select class="collection" name="feature_collection_name" id="feature_collection_name" /></td>
+	</tr>
+  </table>
+</fieldset>
+<fieldset>
+  <legend>Product Pages</legend>
 
   <p>Show sharing buttons on the product page?</p>
   <table>
@@ -373,84 +485,6 @@
     </tr>     
   </table>
 </fieldset>
-
-<fieldset>
-  <legend>Collection Page</legend>
-  <table>
-    <tr>
-      <td>
-        <label for="show_tags">Show product tags?</label> 
-        <input type="checkbox" id="show_tags" name="show_tags" value="1" checked="checked" />      
-      </td>
-    </tr>
-  </table>
-</fieldset>
-<fieldset>
-	<legend>Collection - search and cart pages</legend>
-  <table>
-	<tr>
-       <td><label for="feature_collection_visible">Show collection on search and cart page?</label><small>Will only be displyed on empty cart and search pages.</small></td>
-      <td><input type="checkbox" id="feature_collection_visible" name="feature_collection_visible" /></td>
-    </tr>
-     <tr>
-      <td><label for="feature_collection_title">Collection title</label></td>
-      <td>
-        <input type="text" name="feature_collection_title" id="feature_collection_title" size="30" value="Featured Products" />
-      </td>
-    </tr>
-	<tr>    
-    	<td><label for="feature_collection_name">Collection to show</label></td>
-		<td><select class="collection" name="feature_collection_name" id="feature_collection_name" /></td>
-	</tr>
-  </table>
-</fieldset>
-<fieldset>
-  <legend>Footer</legend>
-  <table class="standard-table">
-			
-		<tr class="even">
-		  <td><label for="footer_txt">Footer text</label></td>
-			<td><textarea id="footer_txt" name="footer_txt" cols="60" rows="5">Copyright Your Company, 2011. 
-			Customize this text in Theme Settings</textarea></td>
-		</tr>		
-		
-		<tr class="odd">
-			<td><label for="footer_linklist_1">Footer link list #1</label></td>
-			<td><select class="linklist" name="footer_linklist_1"><option value="footer">Footer</option></select></td>
-		</tr>
-		<tr class="even">
-			<td><label for="footer_linklist_2">Footer link list #2</label></td>
-			<td><select class="linklist" name="footer_linklist_2"><option value="footer">Footer</option></select></td>
-		</tr>
-		<tr class="odd">
-			<td><label for="footer_linklist_2">Footer link list #3</label></td>
-			<td><select class="linklist" name="footer_linklist_3"><option value="footer">Footer</option></select></td>
-		</tr>			
-  </table>
-  
-  <h3>Newsletter:</h3>  
-  <table class="standard-table">
-    <tr class="even">
-      <td>
-        <label for="newsletter-signup">Show the newsletter signup form?</label>
-      </td>
-      <td>
-        <input type="checkbox" id="newsletter-signup" name="newsletter-signup" value="1" />
-      </td>
-    </tr>
-    <tr class="odd">
-      <td colspan="2">
-        <p>
-          The newsletter signup form will create a customer record with name 'Newsletter, Subscriber' and tags 'prospect' and 'newsletter'.
-          When a customer signs up, you will not receve an email notification. 
-          From the time the form is submitted, it may take up to 15 minutes for the new customer record to show up on your <a href="/admin/customers#f%5B%5D=tag%3A'newsletter'">Customers page</a>.
-        </p>
-      </td>
-    </tr>
-  </table>  
-  
-</fieldset>
-
 <fieldset>
   <legend>Shipping Rates Calculator</legend>
   <table>
